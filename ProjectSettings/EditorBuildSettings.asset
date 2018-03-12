@@ -4,4 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes: []
+=======
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/cardhand.unity
+    guid: db3ac400437cb5e4f8e68d09faad1235
+>>>>>>> armin
