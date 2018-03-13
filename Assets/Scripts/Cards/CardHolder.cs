@@ -13,9 +13,11 @@ public class CardHolder : MonoBehaviour
     // Amount of cards we will instantiate.
     [SerializeField] private int cardAmount = 0;
 
+    // Angle of the cards.
+    //
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         GetCards();
     }
@@ -44,13 +46,19 @@ public class CardHolder : MonoBehaviour
     void AllignCards()
     {
         float cardHalfWidth = cards[0].GetComponent<SpriteRenderer>().bounds.size.x / 2;
-
         float startPos = (cardHalfWidth * (handCards.Count - 1) / 2);
+
+
+        float totalTwist = -20f;
+        float startTwist = -1f * (totalTwist / 2f);
+        float twistPerCard = totalTwist / handCards.Count;
+
 
         // Center the cards in the hand and put offset between each card.
         for (int i = 0; i < handCards.Count; i++)
         {
-            //handCards[i].transform.eulerAngles = new Vector2(-startPos + i * cardHalfWidth, handCards[i].transform.position.y);
+            float twistForThisCard = startTwist + (i * twistPerCard);
+            handCards[i].transform.eulerAngles = new Vector3(0, 0, twistForThisCard);
             handCards[i].transform.position = new Vector2(-startPos + i * cardHalfWidth, handCards[i].transform.position.y);
         }
     }

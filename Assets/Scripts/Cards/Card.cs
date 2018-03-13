@@ -22,6 +22,7 @@ public class Card : MonoBehaviour
         cardSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
+    // Highlighting the card.
     void OnMouseEnter()
     {
         GetComponent<SpriteRenderer>().sortingLayerName = "HighlightCard";
@@ -30,5 +31,22 @@ public class Card : MonoBehaviour
     void OnMouseExit()
     {
         GetComponent<SpriteRenderer>().sortingLayerName = "Card";
+    }
+
+    // Moving the card.
+    void OnMouseDrag()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector2(mousePos.x, mousePos.y);
+    }   
+    
+    void OnMouseDown()
+    {
+        GetComponent<SpriteRenderer>().sortingLayerName = "Card";
+    }
+
+    void OnMouseUp()
+    {
+        // Call allignment
     }
 }

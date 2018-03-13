@@ -38,24 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-<<<<<<< HEAD
-  - name: Default
-    uniqueID: 0
-    locked: 0
-=======
   - name: Background
-    uniqueID: 1400594191
+    uniqueID: 1815014667
     locked: 0
   - name: Ground
-    uniqueID: 3551462955
+    uniqueID: 86531195
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Card
-    uniqueID: 1801480451
+    uniqueID: 471645483
     locked: 0
   - name: HighlightCard
-    uniqueID: 3557552427
+    uniqueID: 1582487957
     locked: 0
->>>>>>> armin

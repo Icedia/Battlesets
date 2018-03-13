@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4468408828793366}
   - component: {fileID: 114280408376002428}
   - component: {fileID: 212238331954216644}
-  - component: {fileID: 61080256182421650}
+  - component: {fileID: 61648475971424614}
   m_Layer: 0
   m_Name: Card - Circle Green
   m_TagString: Untagged
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61080256182421650
+--- !u!61 &61648475971424614
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -58,14 +58,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.68, y: 7.2}
+    oldSize: {x: 215, y: 334}
     newSize: {x: 4.68, y: 7.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.68, y: 7.2}
+  m_Size: {x: 215, y: 334}
   m_EdgeRadius: 0
 --- !u!114 &114280408376002428
 MonoBehaviour:
@@ -112,7 +112,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1801480451
+  m_SortingLayerID: 471645483
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2737f1f0b2da3ca4eba8c40b483eae70, type: 3}
