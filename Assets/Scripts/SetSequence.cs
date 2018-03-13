@@ -41,7 +41,6 @@ public class SetSequence : MonoBehaviour {
     private void GetRandom()
     {
         temp = currentSequence[Random.Range(0, currentSequence.Count)];
-        Debug.Log(currentSequence.Count);
         currentSequence.Remove(temp);
     }
 }

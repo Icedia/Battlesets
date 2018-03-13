@@ -11,12 +11,10 @@ public class Player : MonoBehaviour, IHealth<float>
 	void Start ()
     {
         Health(100);
-
 	}
 	
 	void Update ()
     {
-        Debug.Log(playerHealth);
         playerHealthBar.value = playerHealth;
         if (Input.GetKeyUp(KeyCode.T))
         {
@@ -28,7 +26,6 @@ public class Player : MonoBehaviour, IHealth<float>
     public void Health(float health)
     {
         playerHealth = health;
-        Debug.Log(health);
     }
 
     private void DoDamage(int damage)
