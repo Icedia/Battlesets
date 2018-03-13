@@ -30,7 +30,8 @@ public class TurnManager : MonoBehaviour {
             Debug.Log("defendturnEnd");
         }*/
         attackTurn = true;
-        CheckTurn();
+        //CheckTurn();
+        StartCoroutine(TurnTimer());
 
     }
 	
@@ -46,28 +47,32 @@ public class TurnManager : MonoBehaviour {
         {
             Debug.Log("attackturn started");
             currentTurn = true;
+            // StartCoroutine(TurnTimer());
+            // Debug.Log("routine over");
+            // Debug.Log(currentTurn);
+
+
+            attackTurn = false;
+            defendTurn = true;
+            Debug.Log("attackturn is over");
             StartCoroutine(TurnTimer());
-           // Debug.Log("routine over");
-           // Debug.Log(currentTurn);
-            if (currentTurn == false)
-            {
-                attackTurn = false;
-                defendTurn = true;
-                Debug.Log("attackturn is over");
-            }
+
         }
-        if (defendTurn == true)
+        else
         {
             Debug.Log("defenturn started");
             currentTurn = true;
-            StartCoroutine(TurnTimer());
-            if (currentTurn == false)
-            {
+            //StartCoroutine(TurnTimer());
+ 
                 defendTurn = false;
                 attackTurn = true;
                 Debug.Log("defendturn is over");
-            }
+            StartCoroutine(TurnTimer());
         }
+        
+
+        
+        
     }
 
     IEnumerator TurnTimer()
@@ -78,7 +83,7 @@ public class TurnManager : MonoBehaviour {
         Debug.Log("end card select");
         yield return new WaitForSecondsRealtime(5);
         Debug.Log("end animation");
-        currentTurn = false;
+        CheckTurn();
         
     }
 
