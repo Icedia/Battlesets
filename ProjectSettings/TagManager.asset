@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1188862907
+    locked: 0
+  - name: Ground
+    uniqueID: 3818728363
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Card
+    uniqueID: 1390017099
+    locked: 0
+  - name: HighlightedCard
+    uniqueID: 3994771739
     locked: 0
