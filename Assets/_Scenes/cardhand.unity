@@ -222,17 +222,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 114280408376002428, guid: cf86b85f0ae04fd4fae480d385f4fa1e, type: 2}
-  - {fileID: 114280408376002428, guid: 358434b2488c61c41b3eef59fb2a5d2b, type: 2}
-  - {fileID: 114280408376002428, guid: 93d5bb57aba12e445b09ac01622961a8, type: 2}
-  - {fileID: 114280408376002428, guid: d9fb93e3eb22d3c49a474194c235134d, type: 2}
-  - {fileID: 114280408376002428, guid: 33c8dd03dd77b0f4c8c53d2badc8f790, type: 2}
-  - {fileID: 114280408376002428, guid: d338e3f9a27547a44a2b52729a579d09, type: 2}
-  - {fileID: 114280408376002428, guid: 19f035f0746b6d7488ad22e7732fb380, type: 2}
-  - {fileID: 114280408376002428, guid: 387f3cae5beab35458f61c3a9673041d, type: 2}
-  - {fileID: 114280408376002428, guid: 1a73bbb467e368f49946b2ff21b08067, type: 2}
+  - {fileID: 114207717989855728, guid: 80536f132cc5da44aadb7b109540429d, type: 2}
+  - {fileID: 114207717989855728, guid: 98b8070a249faf2458eefd28d632567d, type: 2}
+  - {fileID: 114207717989855728, guid: d00233dbd80d2f544bda6c6c66fcdd05, type: 2}
+  - {fileID: 114207717989855728, guid: c0d68da7fe998354a98effde07d8ca8b, type: 2}
+  - {fileID: 114207717989855728, guid: b728743eb92d68d4da495febc5f6f06a, type: 2}
+  - {fileID: 114207717989855728, guid: 9f57ac9f775b280489c90977bcf49101, type: 2}
+  - {fileID: 114207717989855728, guid: ca3af685e6fe84e43a32f9decfa05462, type: 2}
+  - {fileID: 114207717989855728, guid: e1d33a413445bdd48b6b7719f436b841, type: 2}
+  - {fileID: 114207717989855728, guid: a0094979594b53249887dad36a2ed95a, type: 2}
+  - {fileID: 114207717989855728, guid: 4694d9e95cbb901449c5c25029600371, type: 2}
+  - {fileID: 114207717989855728, guid: 2ef365a34a5eda641930d119f99fec0b, type: 2}
+  - {fileID: 114207717989855728, guid: bc7da76acac55f24b8e4befb6bb9d854, type: 2}
+  - {fileID: 114207717989855728, guid: 2e4df43140eb9284681a55cfc641724b, type: 2}
+  - {fileID: 114207717989855728, guid: 2e4df43140eb9284681a55cfc641724b, type: 2}
+  - {fileID: 114207717989855728, guid: 5dd6db12c5989164e821db58df90cc43, type: 2}
   handCards: []
-  cardAmount: 8
+  cardAmount: 7
 --- !u!4 &223095235
 Transform:
   m_ObjectHideFlags: 0
@@ -240,7 +246,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 223095233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -250, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -293,7 +299,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 86531195
+  m_SortingLayerID: -476238933
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bc2b04514dd11a54e97d62fb4a394040, type: 3}
@@ -431,7 +437,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1815014667
+  m_SortingLayerID: 1188862907
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 764bd4bbebe5ae84eb815fd0b869ec5e, type: 3}

@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4677224653769936}
   - component: {fileID: 212383345633985070}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Hexagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,9 +52,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4081108584881654}
   - component: {fileID: 114207717989855728}
-  - component: {fileID: 61599065398186748}
+  - component: {fileID: 61909501267900934}
   m_Layer: 0
-  m_Name: Card - Circle Green
+  m_Name: Card - Hexagon Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ Transform:
   m_Father: {fileID: 4081108584881654}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61599065398186748
+--- !u!61 &61909501267900934
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragDist: 0
-  symbol: 2
+  symbol: 3
   color: 1
   backgroundRenderer: {fileID: 212664633923072824}
   symbolRenderer: {fileID: 212383345633985070}
@@ -176,7 +176,7 @@ SpriteRenderer:
   m_SortingLayerID: 1390017099
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a7d9fa2a460ddcd4aaa0b4453ccb6244, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f36f67c542b793b48b956a5c7d73f497, type: 3}
   m_Color: {r: 0.34442192, g: 1, b: 0.25735295, a: 1}
   m_FlipX: 0
   m_FlipY: 0

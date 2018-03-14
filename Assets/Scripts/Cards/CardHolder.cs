@@ -12,14 +12,13 @@ public class CardHolder : MonoBehaviour
 
     // Amount of cards we will instantiate.
     [SerializeField] private int cardAmount = 0;
-
-    // Angle of the cards.
-    //
-
+    
     // Use this for initialization
     void Start ()
     {
         GetCards();
+
+        Card.CardDropped += AllignCards;
     }
 
     void GetCards()
@@ -37,6 +36,8 @@ public class CardHolder : MonoBehaviour
             Card card = Instantiate(cards[i]) as Card;
             handCards.Add(card);
             card.transform.parent = transform;
+            card.BackgroundRenderer.sortingOrder = i;
+            card.SymbolRenderer.sortingOrder = i + 1;
         }
 
         // Allign all cards when received.
@@ -45,11 +46,11 @@ public class CardHolder : MonoBehaviour
 
     void AllignCards()
     {
-        float cardHalfWidth = cards[0].GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        float cardHalfWidth = cards[0].BackgroundRenderer.bounds.size.x / 2;
         float startPos = (cardHalfWidth * (handCards.Count - 1) / 2);
 
 
-        float totalTwist = -20f;
+        float totalTwist = -45f;
         float startTwist = -1f * (totalTwist / 2f);
         float twistPerCard = totalTwist / handCards.Count;
 
@@ -59,8 +60,12 @@ public class CardHolder : MonoBehaviour
         {
             float twistForThisCard = startTwist + (i * twistPerCard);
             handCards[i].transform.eulerAngles = new Vector3(0, 0, twistForThisCard);
-            handCards[i].transform.position = new Vector2(-startPos + i * cardHalfWidth, handCards[i].transform.position.y);
+            handCards[i].transform.position = new Vector2(-startPos + i * cardHalfWidth, transform.position.y);
         }
     }
-    
+
+    void OnDestroy()
+    {
+        Card.CardDropped -= AllignCards;
+    }
 }
