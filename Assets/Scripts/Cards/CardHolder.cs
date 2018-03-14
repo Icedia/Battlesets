@@ -37,7 +37,7 @@ public class CardHolder : MonoBehaviour
             handCards.Add(card);
             card.transform.parent = transform;
             card.BackgroundRenderer.sortingOrder = i;
-            card.SymbolRenderer.sortingOrder = i;
+            card.SymbolRenderer.sortingOrder = i + 1;
         }
 
         // Allign all cards when received.
