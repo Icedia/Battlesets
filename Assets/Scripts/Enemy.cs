@@ -10,12 +10,12 @@ public class Enemy : MonoBehaviour, IHealth<float>
 
     void Start ()
     {
-        Health(100);
+        Health(100); // set health for the player
 	}
 	
 	void Update ()
     {
-        if (Input.GetKeyUp(KeyCode.Y))
+        if (Input.GetKeyUp(KeyCode.Y)) // replace with a other way to do damage
         {
             DoDamage(10);
         }

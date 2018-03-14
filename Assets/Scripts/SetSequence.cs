@@ -13,7 +13,7 @@ public class SetSequence : MonoBehaviour {
     [SerializeField] private SpriteRenderer three;
     private Sprite temp;
 	
-	void Update () 
+	void Update ()
 	{
         Generate();
 	}
