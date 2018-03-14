@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragDist: 0
-  symbol: 2
-  color: 1
+  symbolSprite: 2
+  symbolColor: 1
   backgroundRenderer: {fileID: 212664633923072824}
   symbolRenderer: {fileID: 212383345633985070}
 --- !u!212 &212383345633985070

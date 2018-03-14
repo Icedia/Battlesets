@@ -8,6 +8,9 @@ public class Player : MonoBehaviour, IHealth<float>
     private float playerHealth;
     [SerializeField]private Slider playerHealthBar;
 
+    [SerializeField] private Sprite playerDefend;
+    [SerializeField] private Sprite playerAttack;
+
 	void Start ()
     {
         Health(100);
@@ -23,12 +26,22 @@ public class Player : MonoBehaviour, IHealth<float>
 
     }
 
+    public void DefendAnim()
+    {
+        GetComponent<SpriteRenderer>().sprite = playerDefend;
+    }
+
+    public void AttackAnim()
+    {
+        GetComponent<SpriteRenderer>().sprite = playerAttack;
+    }
+
     public void Health(float health)
     {
         playerHealth = health;
     }
 
-    private void DoDamage(int damage)
+    public void DoDamage(int damage)
     {
         playerHealth -= damage;
     }
