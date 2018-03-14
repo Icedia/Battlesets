@@ -12,9 +12,11 @@ public class TurnManager : MonoBehaviour {
     [SerializeField]private float defaultTurnTime = 5;
     private float currentTime;
     [SerializeField] private Text countDown;
+    private SetSequence sequence;
 
 	void Start ()
     {
+        sequence = GetComponent<SetSequence>();
         attackTurn = true;
         currentTime = defaultTurnTime;
         StartCoroutine(TurnTimer());
@@ -55,6 +57,7 @@ public class TurnManager : MonoBehaviour {
     IEnumerator TurnTimer()
     {
         Debug.Log("select cards");
+        //sequence.Generate();
         StartCoroutine(CountDown(defaultTurnTime));
         yield return new WaitForSecondsRealtime(defaultTurnTime);
         Debug.Log("end card select");
