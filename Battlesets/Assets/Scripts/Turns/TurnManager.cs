@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour {
     private enum turn { TurnTimer };
@@ -8,38 +9,22 @@ public class TurnManager : MonoBehaviour {
     private bool attackTurn = false;
     private bool defendTurn = false;
     private bool currentTurn = false;
+    [SerializeField]private float defaultTurnTime = 5;
+    private float currentTime;
+    [SerializeField] private Text countDown;
 
-	// Use this for initialization
 	void Start ()
     {
-        /*
         attackTurn = true;
-        if (attackTurn == true)
-        {
-            StartCoroutine(TurnTimer());
-            attackTurn = false;
-            defendTurn = true;
-            Debug.Log("attackturnEnd");
-        }
-        //StartCoroutine(TurnTimer());
-        if (defendTurn == true)
-        {
-            StartCoroutine(TurnTimer());
-            defendTurn = false;
-            attackTurn = true;
-            Debug.Log("defendturnEnd");
-        }*/
-        attackTurn = true;
-        //CheckTurn();
+        currentTime = defaultTurnTime;
         StartCoroutine(TurnTimer());
-
+        
     }
-	
-	// Update is called once per frame
-	void Update ()
+    private void Update()
     {
-		
-	}
+        countDown.text = "Time left:" + " " + currentTime;
+    }
+
 
     void CheckTurn()
     {
@@ -47,9 +32,6 @@ public class TurnManager : MonoBehaviour {
         {
             Debug.Log("attackturn started");
             currentTurn = true;
-            // StartCoroutine(TurnTimer());
-            // Debug.Log("routine over");
-            // Debug.Log(currentTurn);
 
 
             attackTurn = false;
@@ -62,30 +44,36 @@ public class TurnManager : MonoBehaviour {
         {
             Debug.Log("defenturn started");
             currentTurn = true;
-            //StartCoroutine(TurnTimer());
  
-                defendTurn = false;
-                attackTurn = true;
-                Debug.Log("defendturn is over");
+            defendTurn = false;
+            attackTurn = true;
+            Debug.Log("defendturn is over");
             StartCoroutine(TurnTimer());
         }
-        
-
-        
-        
     }
 
     IEnumerator TurnTimer()
     {
-
         Debug.Log("select cards");
-        yield return new WaitForSecondsRealtime(5);
+        StartCoroutine(CountDown(defaultTurnTime));
+        yield return new WaitForSecondsRealtime(defaultTurnTime);
         Debug.Log("end card select");
         yield return new WaitForSecondsRealtime(5);
         Debug.Log("end animation");
         CheckTurn();
-        
     }
 
-
+    IEnumerator CountDown(float time)
+    {
+        for (int i = 0; i < defaultTurnTime; i++)
+        {
+            if (time > 0)
+            {
+                yield return new WaitForSeconds(1);
+                time--;
+                currentTime = time;
+                Debug.Log(currentTime);
+            }
+        }       
+    }
 }
