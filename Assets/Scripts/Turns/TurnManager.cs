@@ -12,17 +12,23 @@ public class TurnManager : MonoBehaviour {
     [SerializeField]private float defaultTurnTime = 5;
     private float currentTime;
     [SerializeField] private Text countDown;
-    private SetSequence sequence;
+
+    [SerializeField] private SetSequence sequence;
+    [SerializeField] private CardHolder cardHolder;
+
+    [SerializeField] private Player player;
+    [SerializeField] private Enemy enemy;
+
+    public int turnDamage = 0;
 
 	void Start ()
     {
-        sequence = GetComponent<SetSequence>();
         attackTurn = true;
         currentTime = defaultTurnTime;
         StartCoroutine(TurnTimer());
-        
     }
-    private void Update()
+
+    void Update()
     {
         countDown.text = "Time left:" + " " + currentTime;
     }
@@ -34,10 +40,11 @@ public class TurnManager : MonoBehaviour {
         {
             Debug.Log("attackturn started");
             currentTurn = true;
-
-
             attackTurn = false;
             defendTurn = true;
+            player.AttackAnim();
+            enemy.DefendAnim();
+
             Debug.Log("attackturn is over");
             StartCoroutine(TurnTimer());
 
@@ -46,9 +53,11 @@ public class TurnManager : MonoBehaviour {
         {
             Debug.Log("defenturn started");
             currentTurn = true;
- 
             defendTurn = false;
             attackTurn = true;
+            player.DefendAnim();
+            enemy.AttackAnim();
+
             Debug.Log("defendturn is over");
             StartCoroutine(TurnTimer());
         }
@@ -57,10 +66,23 @@ public class TurnManager : MonoBehaviour {
     IEnumerator TurnTimer()
     {
         Debug.Log("select cards");
-        //sequence.Generate();
+        sequence.Generate();
+        cardHolder.GetCards();
+
         StartCoroutine(CountDown(defaultTurnTime));
         yield return new WaitForSecondsRealtime(defaultTurnTime);
+        cardHolder.HideCards();
         Debug.Log("end card select");
+
+        if (attackTurn)
+        {
+            enemy.DoDamage(turnDamage);
+        }
+        else if (defendTurn)
+        {
+            player.DoDamage(30 - turnDamage);
+        }
+
         yield return new WaitForSecondsRealtime(5);
         Debug.Log("end animation");
         CheckTurn();
@@ -75,7 +97,7 @@ public class TurnManager : MonoBehaviour {
                 yield return new WaitForSeconds(1);
                 time--;
                 currentTime = time;
-                Debug.Log(currentTime);
+                //Debug.Log(currentTime);
             }
         }       
     }

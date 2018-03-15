@@ -7,15 +7,18 @@ public class Card : MonoBehaviour
     public delegate void OnCardDropped();
     public static event OnCardDropped CardDropped;
 
+    public delegate void OnCardPlaced(Card card);
+    public static event OnCardPlaced CardPlaced;
+
     static bool isDragging = false;
 
     [SerializeField] private float dragDist;
 
-    private enum Symbol { square, triangle, circle, hexagon, pentagon };
-    private enum Color { red, green, blue };
+    public enum Symbol { square, triangle, circle, hexagon, pentagon };
+    public enum SymbolColor { red, green, blue };
 
-    [SerializeField] private Symbol symbol;
-    [SerializeField] private Color color;
+    [SerializeField] public Symbol symbolSprite;
+    [SerializeField] public SymbolColor symbolColor;
 
     [SerializeField] private SpriteRenderer backgroundRenderer;
     public SpriteRenderer BackgroundRenderer
@@ -81,6 +84,10 @@ public class Card : MonoBehaviour
         if (dragDist >= 150f)
         {
             dragDist = 0;
+            if (CardPlaced != null)
+            {
+                CardPlaced(this);
+            }
             print("Card placed!");
         }
     }
