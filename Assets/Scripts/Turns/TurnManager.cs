@@ -9,6 +9,7 @@ public class TurnManager : MonoBehaviour {
     private bool attackTurn = false;
     private bool defendTurn = false;
     private bool currentTurn = false;
+    private bool cardsPlayed = false;
     [SerializeField]private float defaultTurnTime = 5;
     private float currentTime;
     [SerializeField] private Text countDown;
@@ -31,6 +32,10 @@ public class TurnManager : MonoBehaviour {
     void Update()
     {
         countDown.text = "Time left:" + " " + currentTime;
+        if (turnDamage == 30)
+        {
+            cardsPlayed = true;
+        }
     }
 
 
@@ -38,27 +43,23 @@ public class TurnManager : MonoBehaviour {
     {
         if (attackTurn == true)
         {
-            Debug.Log("attackturn started");
             currentTurn = true;
             attackTurn = false;
             defendTurn = true;
             player.AttackAnim();
             enemy.DefendAnim();
 
-            Debug.Log("attackturn is over");
             StartCoroutine(TurnTimer());
 
         }
         else
         {
-            Debug.Log("defenturn started");
             currentTurn = true;
             defendTurn = false;
             attackTurn = true;
             player.DefendAnim();
             enemy.AttackAnim();
 
-            Debug.Log("defendturn is over");
             StartCoroutine(TurnTimer());
         }
     }
@@ -70,7 +71,11 @@ public class TurnManager : MonoBehaviour {
         cardHolder.GetCards();
 
         StartCoroutine(CountDown(defaultTurnTime));
-        yield return new WaitForSecondsRealtime(defaultTurnTime);
+        while (cardsPlayed == false)
+        {
+            yield return new WaitForSeconds(defaultTurnTime);
+        }
+        
         cardHolder.HideCards();
         Debug.Log("end card select");
 
@@ -83,7 +88,7 @@ public class TurnManager : MonoBehaviour {
             player.DoDamage(30 - turnDamage);
         }
 
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSeconds(5);
         Debug.Log("end animation");
         CheckTurn();
     }
