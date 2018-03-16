@@ -9,7 +9,7 @@ public class SetSequence : MonoBehaviour {
     [SerializeField] private Sprite[] shapes;
     [SerializeField] private SpriteRenderer[] seq;
 
-    public enum Symbol { square, triangle, circle, hexagon, pentagon };
+    public enum Symbol { air, earth, fire, water, soul };
     public enum SymbolColor { red, green, blue };
 
     [SerializeField] public Symbol[] symbolSprite;
@@ -88,16 +88,16 @@ public class SetSequence : MonoBehaviour {
     {
         switch (spriteName)
         {
-            case ("Circle"):
-                return Symbol.circle;
-            case ("Triangle"):
-                return Symbol.triangle;
-            case ("Square"):
-                return Symbol.square;
-            case ("Hexagon"):
-                return Symbol.hexagon;
+            case ("Rune_Air"):
+                return Symbol.air;
+            case ("Rune_Earth"):
+                return Symbol.earth;
+            case ("Rune_Fire"):
+                return Symbol.fire;
+            case ("Rune_Water"):
+                return Symbol.water;
             default:
-                return Symbol.pentagon;
+                return Symbol.soul;
         }
     }
 
