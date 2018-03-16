@@ -119,7 +119,7 @@ public class CardHolder : MonoBehaviour
         for (int i = 0; i < handCards.Count; i++)
         {
             handCards[i].BackgroundRenderer.sortingOrder = i;
-            handCards[i].SymbolRenderer.sortingOrder = i;
+            handCards[i].SymbolRenderer.sortingOrder = i+1;
         }
     }
 

@@ -365,9 +365,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dca3849923f9e104a88d49f2c4ec0e30, type: 3}
   - {fileID: 21300000, guid: 6f1fcaea961c2804f8884baee7c8104a, type: 3}
   - {fileID: 21300000, guid: 6584d74957f55de43bc1f4832704e68a, type: 3}
-  one: {fileID: 1708635527}
-  two: {fileID: 3141915}
-  three: {fileID: 900671482}
+  seq:
+  - {fileID: 1708635527}
+  - {fileID: 3141915}
+  - {fileID: 900671482}
   symbolSprite: 000000000000000000000000
   symbolColor: 000000000000000000000000
   currentSequenceNum: 0

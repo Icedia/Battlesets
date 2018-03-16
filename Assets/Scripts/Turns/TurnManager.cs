@@ -9,7 +9,6 @@ public class TurnManager : MonoBehaviour {
     private bool attackTurn = false;
     private bool defendTurn = false;
     private bool currentTurn = false;
-    private bool cardsPlayed = false;
     [SerializeField]private float defaultTurnTime = 5;
     private float currentTime;
     [SerializeField] private Text countDown;
@@ -32,10 +31,7 @@ public class TurnManager : MonoBehaviour {
     void Update()
     {
         countDown.text = "Time left:" + " " + currentTime;
-        if (turnDamage == 30)
-        {
-            cardsPlayed = true;
-        }
+
     }
 
 
@@ -71,10 +67,9 @@ public class TurnManager : MonoBehaviour {
         cardHolder.GetCards();
 
         StartCoroutine(CountDown(defaultTurnTime));
-        while (cardsPlayed == false)
-        {
-            yield return new WaitForSeconds(defaultTurnTime);
-        }
+ 
+         yield return new WaitForSeconds(defaultTurnTime);
+
         
         cardHolder.HideCards();
         Debug.Log("end card select");
