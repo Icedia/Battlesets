@@ -20,7 +20,9 @@ public class SetSequence : MonoBehaviour {
     [SerializeField] private Sprite currentSprite1;
     [SerializeField] private Sprite currentSprite2;
     [SerializeField] private Sprite currentSprite3;
+    [SerializeField] private Sprite[] currentSpriteArray;
     [SerializeField] private Sprite temp;
+    private int Y;
 
     public void Generate()
     {
@@ -31,26 +33,37 @@ public class SetSequence : MonoBehaviour {
             currentSequence.Add(shapes[i]);
         }
 
-        GetRandomSprite();
-        seq[0].sprite = temp;
-        currentSprite1 = temp;
-        symbolSprite[0] = CheckSymbol(currentSprite1.name);
-        symbolColor[0] = (SymbolColor)Random.Range(0, 3);
-        seq[0].color = SetColor(symbolColor[0]);
+        for (int i = 0; i < seq.Length; i++)
+        {
+            Y++;
+            GetRandomSprite();
+            seq[i].sprite = temp;
+            currentSpriteArray[i] = temp;
+            symbolSprite[i] = CheckSymbol(currentSpriteArray[i].name);
+            seq[i].color = SetColor(symbolColor[Y]);
+            symbolColor[Y] = (SymbolColor)Random.Range(0, symbolColor.Length);
+            if (Y != 3)
+            {
+                Y = 0;
+            }
 
-        GetRandomSprite();
-        seq[1].sprite = temp;
-        currentSprite2 = temp;
-        symbolSprite[1] = CheckSymbol(currentSprite2.name);
-        symbolColor[1] = (SymbolColor)Random.Range(0, 3);
-        seq[1].color = SetColor(symbolColor[1]);
 
-        GetRandomSprite();
-        seq[2].sprite = temp;
-        currentSprite3 = temp;
-        symbolSprite[2] = CheckSymbol(currentSprite3.name);
-        symbolColor[2] = (SymbolColor)Random.Range(0, 3);
-        seq[2].color = SetColor(symbolColor[2]);
+
+        }
+        /* GetRandomSprite();
+         seq[1].sprite = temp;
+         currentSprite2 = temp;
+         symbolSprite[1] = CheckSymbol(currentSprite2.name);
+         symbolColor[1] = (SymbolColor)Random.Range(0, 3);
+         seq[1].color = SetColor(symbolColor[1]);
+
+         GetRandomSprite();
+         seq[2].sprite = temp;
+         currentSprite3 = temp;
+         symbolSprite[2] = CheckSymbol(currentSprite3.name);
+         symbolColor[2] = (SymbolColor)Random.Range(0, 3);
+         seq[2].color = SetColor(symbolColor[2]);
+     */
 
         currentSequence.Clear();
     }
