@@ -26,6 +26,9 @@ public class CardHolder : MonoBehaviour
         Card.CardPlaced += CardSet;
     }
 
+    /// <summary>
+    /// Get playable cards in your hand.
+    /// </summary>
     public void GetCards()
     {
         // Check if we have cards in our list.
@@ -39,8 +42,8 @@ public class CardHolder : MonoBehaviour
         {
             for (int i = 0; i < cards.Count; i++)
             {
-                if (cards[i].symbolSprite.ToString() == setSequence.symbolSprite[j].ToString() &&
-                    cards[i].symbolColor.ToString() == setSequence.symbolColor[j].ToString())
+                if (cards[i].symbolSprite.ToString().Equals(setSequence.symbolSprite[j].ToString()) &&
+                    cards[i].symbolColor.ToString().Equals(setSequence.symbolColor[j].ToString()))
                 {
                     Card card = Instantiate(cards[i]) as Card;
                     handCards.Add(card);
@@ -48,8 +51,8 @@ public class CardHolder : MonoBehaviour
                 }
             }
         }
-
-        // Shuffle our hand with cards.
+        
+        // Instantiate all hand cards.
         for (int i = 0; i < cardAmount-2; i++)
         {
             Card card = Instantiate(cards[Random.Range(0, cards.Count)]) as Card;
@@ -57,10 +60,32 @@ public class CardHolder : MonoBehaviour
             card.transform.parent = transform;
         }
 
+        // Shuffle our hand with cards.
+        ShuffleHand();
+
         // Allign all cards when received.
         AllignCards();
     }
 
+    /// <summary>
+    /// Randomize the order of the hand cards.
+    /// </summary>
+    private void ShuffleHand()
+    {
+        List<Card> randomizedList = new List<Card>();
+        while (handCards.Count > 0)
+        {
+            int index = Random.Range(0, handCards.Count); //pick a random item from the master list
+            randomizedList.Add(handCards[index]); //place it at the end of the randomized list
+            handCards.RemoveAt(index);
+        }
+
+        handCards = randomizedList;
+    }
+
+    /// <summary>
+    /// Destroy all cards in the hand and clear the list. 
+    /// </summary>
     public void HideCards()
     {
         for (int i = 0; i < handCards.Count; i++)
@@ -70,6 +95,9 @@ public class CardHolder : MonoBehaviour
         handCards.Clear();
     }
 
+    /// <summary>
+    /// Makes all cards in the hand alligned propperly.
+    /// </summary>
     void AllignCards()
     {
         float cardHalfWidth = cards[0].BackgroundRenderer.bounds.size.x / 2;
@@ -88,21 +116,31 @@ public class CardHolder : MonoBehaviour
         }
 
         // Set rendering order.
-        for (int i = 0; i < cardAmount; i++)
+        for (int i = 0; i < handCards.Count; i++)
         {
             handCards[i].BackgroundRenderer.sortingOrder = i;
             handCards[i].SymbolRenderer.sortingOrder = i;
         }
     }
 
+    /// <summary>
+    /// Gets called when the player sets a card.
+    /// </summary>
+    /// <param name="card">The played card.</param>
     void CardSet(Card card)
     {
         // Compare the placed card with the current sequence set.
-        if (card.symbolSprite.ToString() == setSequence.symbolSprite[setSequence.currentSequenceNum].ToString() &&
-           card.symbolColor.ToString() == setSequence.symbolColor[setSequence.currentSequenceNum].ToString())
+        if (card.symbolSprite.ToString().Equals(setSequence.symbolSprite[setSequence.currentSequenceNum].ToString()) &&
+           card.symbolColor.ToString().Equals(setSequence.symbolColor[setSequence.currentSequenceNum].ToString()))
         {
             // Correct card.
             print("Correct!");
+
+            // Destroy and remove the card.
+            handCards.Remove(card);
+            Destroy(card.gameObject);
+            AllignCards();
+
             turnManager.turnDamage += 10;
         }
         else
@@ -111,10 +149,12 @@ public class CardHolder : MonoBehaviour
             print("Wrong!");
         }
 
-        //Destroy(card);
         setSequence.currentSequenceNum++;
     }
 
+    /// <summary>
+    /// Unsubscribe from every delegate.
+    /// </summary>
     void OnDestroy()
     {
         Card.CardDropped -= AllignCards;
