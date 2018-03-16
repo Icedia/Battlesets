@@ -31,6 +31,12 @@ public class TurnManager : MonoBehaviour {
     void Update()
     {
         countDown.text = "Time left:" + " " + currentTime;
+        if (sequence.currentSequenceNum > sequence.CurrentSequence.Count)
+        {
+            StopCoroutine(TurnTimer());
+            EndTurn();
+
+        }
 
     }
 
@@ -59,18 +65,9 @@ public class TurnManager : MonoBehaviour {
             StartCoroutine(TurnTimer());
         }
     }
-
-    IEnumerator TurnTimer()
+    void EndTurn()
     {
-        Debug.Log("select cards");
-        sequence.Generate();
-        cardHolder.GetCards();
 
-        StartCoroutine(CountDown(defaultTurnTime));
- 
-         yield return new WaitForSeconds(defaultTurnTime);
-
-        
         cardHolder.HideCards();
         Debug.Log("end card select");
 
@@ -83,9 +80,21 @@ public class TurnManager : MonoBehaviour {
             player.DoDamage(30 - turnDamage);
         }
 
-        yield return new WaitForSeconds(5);
-        Debug.Log("end animation");
-        CheckTurn();
+        StartCoroutine(AnimationTime());
+    }
+
+    IEnumerator TurnTimer()
+    {
+        Debug.Log("select cards");
+        sequence.Generate();
+        cardHolder.GetCards();
+
+        StartCoroutine(CountDown(defaultTurnTime));
+ 
+        yield return new WaitForSeconds(defaultTurnTime);
+
+        EndTurn();
+
     }
 
     IEnumerator CountDown(float time)
@@ -100,5 +109,11 @@ public class TurnManager : MonoBehaviour {
                 //Debug.Log(currentTime);
             }
         }       
+    }
+    IEnumerator AnimationTime()
+    {
+        yield return new WaitForSeconds(5);
+        Debug.Log("end animation");
+        CheckTurn();
     }
 }
