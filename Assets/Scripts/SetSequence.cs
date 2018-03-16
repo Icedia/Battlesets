@@ -6,11 +6,8 @@ using UnityEngine;
 public class SetSequence : MonoBehaviour {
 
 	private List<Sprite> currentSequence = new List<Sprite>();
-	private int sequenceAmount = 3;
     [SerializeField] private Sprite[] shapes;
-    [SerializeField] private SpriteRenderer one;
-    [SerializeField] private SpriteRenderer two;
-    [SerializeField] private SpriteRenderer three;
+    [SerializeField] private SpriteRenderer[] seq;
 
     public enum Symbol { square, triangle, circle, hexagon, pentagon };
     public enum SymbolColor { red, green, blue };
@@ -35,27 +32,27 @@ public class SetSequence : MonoBehaviour {
         }
 
         GetRandomSprite();
-        one.sprite = temp;
+        seq[0].sprite = temp;
         currentSprite1 = temp;
         symbolSprite[0] = CheckSymbol(currentSprite1.name);
         symbolColor[0] = (SymbolColor)Random.Range(0, 3);
-        one.color = SetColor(symbolColor[0]);
+        seq[0].color = SetColor(symbolColor[0]);
 
         GetRandomSprite();
-        two.sprite = temp;
+        seq[1].sprite = temp;
         currentSprite2 = temp;
         symbolSprite[1] = CheckSymbol(currentSprite2.name);
         symbolColor[1] = (SymbolColor)Random.Range(0, 3);
-        two.color = SetColor(symbolColor[1]);
+        seq[1].color = SetColor(symbolColor[1]);
 
         GetRandomSprite();
-        three.sprite = temp;
+        seq[2].sprite = temp;
         currentSprite3 = temp;
         symbolSprite[2] = CheckSymbol(currentSprite3.name);
         symbolColor[2] = (SymbolColor)Random.Range(0, 3);
-        three.color = SetColor(symbolColor[2]);
+        seq[2].color = SetColor(symbolColor[2]);
 
-        currentSequence.Clear(); // save these values
+        currentSequence.Clear();
     }
 
     Color SetColor(SymbolColor symbolColor)
