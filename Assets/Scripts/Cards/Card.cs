@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    // Event when a card is let go.
     public delegate void OnCardDropped();
     public static event OnCardDropped CardDropped;
-
+    // Event when a card is played.
     public delegate void OnCardPlaced(Card card);
     public static event OnCardPlaced CardPlaced;
 
+    // Static boolean to keep track of the card that is being dragged.
     static bool isDragging = false;
 
-    [SerializeField] private float dragDist;
+    // Amount of distance between the mousepointer and the card.
+    private float dragDist;
 
     public enum Symbol { air, earth, fire, water, soul };
     public enum SymbolColor { red, green, blue };
@@ -20,12 +23,14 @@ public class Card : MonoBehaviour
     [SerializeField] public Symbol symbolSprite;
     [SerializeField] public SymbolColor symbolColor;
 
+    // Renderer of our Card Background.
     [SerializeField] private SpriteRenderer backgroundRenderer;
     public SpriteRenderer BackgroundRenderer
     {
         get { return backgroundRenderer; }
         set { backgroundRenderer = value; }
     }
+    // Renderer of our Card Symbol.
     [SerializeField] private SpriteRenderer symbolRenderer;
     public SpriteRenderer SymbolRenderer
     {

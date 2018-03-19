@@ -42,8 +42,8 @@ public class CardHolder : MonoBehaviour
         {
             for (int i = 0; i < cards.Count; i++)
             {
-                if (cards[i].symbolSprite.ToString().Equals(setSequence.symbolSprite[j].ToString()) &&
-                    cards[i].symbolColor.ToString().Equals(setSequence.symbolColor[j].ToString()))
+                if (cards[i].symbolSprite.ToString().Equals(setSequence.CurrentSequence[j].SymbolSprite.ToString()) &&
+                    cards[i].symbolColor.ToString().Equals(setSequence.CurrentSequence[j].SymbolClr.ToString()))
                 {
                     Card card = Instantiate(cards[i]) as Card;
                     handCards.Add(card);
@@ -130,8 +130,8 @@ public class CardHolder : MonoBehaviour
     void CardSet(Card card)
     {
         // Compare the placed card with the current sequence set.
-        if (card.symbolSprite.ToString().Equals(setSequence.symbolSprite[setSequence.currentSequenceNum].ToString()) &&
-           card.symbolColor.ToString().Equals(setSequence.symbolColor[setSequence.currentSequenceNum].ToString()))
+        if (card.symbolSprite.ToString().Equals(setSequence.CurrentSequence[setSequence.CurrentSequenceNum].SymbolSprite.ToString()) &&
+           card.symbolColor.ToString().Equals(setSequence.CurrentSequence[setSequence.CurrentSequenceNum].SymbolClr.ToString()))
         {
             // Correct card.
             print("Correct!");
@@ -140,7 +140,7 @@ public class CardHolder : MonoBehaviour
             handCards.Remove(card);
             Destroy(card.gameObject);
             AllignCards();
-
+            
             turnManager.turnDamage += 10;
         }
         else
@@ -149,7 +149,8 @@ public class CardHolder : MonoBehaviour
             print("Wrong!");
         }
 
-        setSequence.currentSequenceNum++;
+        setSequence.CurrentSequence[setSequence.CurrentSequenceNum].gameObject.SetActive(false);
+        setSequence.CurrentSequenceNum++;
     }
 
     /// <summary>

@@ -31,7 +31,7 @@ public class TurnManager : MonoBehaviour {
     void Update()
     {
         countDown.text = "Time left:" + " " + currentTime;
-        if (sequence.currentSequenceNum > sequence.CurrentSequence.Count)
+        if (sequence.CurrentSequenceNum > sequence.CurrentSequence.Count-1)
         {
             StopCoroutine(TurnTimer());
             EndTurn();
@@ -86,7 +86,7 @@ public class TurnManager : MonoBehaviour {
     IEnumerator TurnTimer()
     {
         Debug.Log("select cards");
-        sequence.Generate();
+        sequence.GenerateSequence();
         cardHolder.GetCards();
 
         StartCoroutine(CountDown(defaultTurnTime));
