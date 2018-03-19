@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4677224653769936}
   - component: {fileID: 212383345633985070}
   m_Layer: 0
-  m_Name: Pentagon
+  m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,9 +52,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4081108584881654}
   - component: {fileID: 114207717989855728}
-  - component: {fileID: 61159723269170800}
+  - component: {fileID: 61561542399348646}
   m_Layer: 0
-  m_Name: Card - Pentagon Blue
+  m_Name: Card - Water Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ Transform:
   m_Father: {fileID: 4081108584881654}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61159723269170800
+--- !u!61 &61561542399348646
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragDist: 0
-  symbolSprite: 4
-  symbolColor: 2
+  symbolSprite: 3
+  symbolColor: 1
   backgroundRenderer: {fileID: 212664633923072824}
   symbolRenderer: {fileID: 212383345633985070}
 --- !u!212 &212383345633985070
@@ -176,12 +176,12 @@ SpriteRenderer:
   m_SortingLayerID: 1390017099
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c572dd2e46387494cb42181f626b3edc, type: 3}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6584d74957f55de43bc1f4832704e68a, type: 3}
+  m_Color: {r: 0.24137926, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 170, y: 171}
+  m_Size: {x: 171, y: 171}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -220,7 +220,7 @@ SpriteRenderer:
   m_SortingLayerID: 1390017099
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2737f1f0b2da3ca4eba8c40b483eae70, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8c273d9e76b5795428dd49c487bd9306, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

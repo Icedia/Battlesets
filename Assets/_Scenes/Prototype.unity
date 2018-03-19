@@ -226,7 +226,7 @@ MonoBehaviour:
   - {fileID: 114207717989855728, guid: 4694d9e95cbb901449c5c25029600371, type: 2}
   - {fileID: 114207717989855728, guid: 2ef365a34a5eda641930d119f99fec0b, type: 2}
   - {fileID: 114207717989855728, guid: bc7da76acac55f24b8e4befb6bb9d854, type: 2}
-  - {fileID: 114207717989855728, guid: 2e4df43140eb9284681a55cfc641724b, type: 2}
+  - {fileID: 114207717989855728, guid: 6a58bbcc0da87fd42a7e7bd26658cdc5, type: 2}
   - {fileID: 114207717989855728, guid: 2e4df43140eb9284681a55cfc641724b, type: 2}
   - {fileID: 114207717989855728, guid: 5dd6db12c5989164e821db58df90cc43, type: 2}
   handCards: []
@@ -359,21 +359,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17e04bfd6723b547ba89a1ceb6ce853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSequence:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   shapes:
-  - {fileID: 21300000, guid: a7d9fa2a460ddcd4aaa0b4453ccb6244, type: 3}
-  - {fileID: 21300000, guid: f36f67c542b793b48b956a5c7d73f497, type: 3}
-  - {fileID: 21300000, guid: c572dd2e46387494cb42181f626b3edc, type: 3}
-  - {fileID: 21300000, guid: 2e12e0a7253dc7246aa06f29f187f32b, type: 3}
-  - {fileID: 21300000, guid: e5700bd267b44f849915686448628a6e, type: 3}
-  one: {fileID: 1708635527}
-  two: {fileID: 3141915}
-  three: {fileID: 900671482}
-  symbolSprite: 0000000000000000000000000000000000000000
+  - {fileID: 21300000, guid: 4202bb19b46e410419e6633a3815b153, type: 3}
+  - {fileID: 21300000, guid: d26a9afe14fc44c43ab1cd6b6aef964c, type: 3}
+  - {fileID: 21300000, guid: dca3849923f9e104a88d49f2c4ec0e30, type: 3}
+  - {fileID: 21300000, guid: 6f1fcaea961c2804f8884baee7c8104a, type: 3}
+  - {fileID: 21300000, guid: 6584d74957f55de43bc1f4832704e68a, type: 3}
+  seq:
+  - {fileID: 1708635527}
+  - {fileID: 3141915}
+  - {fileID: 900671482}
+  symbolSprite: 000000000000000000000000
   symbolColor: 000000000000000000000000
   currentSequenceNum: 0
-  currentSprite1: {fileID: 0}
-  currentSprite2: {fileID: 0}
-  currentSprite3: {fileID: 0}
+  currentSpriteArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   temp: {fileID: 0}
 --- !u!4 &325706315
 Transform:
@@ -402,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e68a6e1bf5efbc438852aa65d052a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultTurnTime: 10
+  defaultTurnTime: 60
   countDown: {fileID: 1777415246}
   sequence: {fileID: 325706314}
   cardHolder: {fileID: 23476415}
@@ -742,7 +748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealthBar: {fileID: 276009138}
-  enemyDefend: {fileID: 21300000, guid: b8cb6f91b081ed146ac6fcb74f083912, type: 3}
+  enemyDefend: {fileID: 21300000, guid: 5c16dc49d08277b42a3761121fd405f4, type: 3}
   enemyAttack: {fileID: 21300000, guid: d2215f4dd03c131448cd288f68c9c677, type: 3}
 --- !u!212 &955472533
 SpriteRenderer:
@@ -778,7 +784,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b8cb6f91b081ed146ac6fcb74f083912, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c16dc49d08277b42a3761121fd405f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1130,7 +1136,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d2215f4dd03c131448cd288f68c9c677, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e84a992cb66b3904299f3a4b5f583c21, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1534,7 +1540,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1736495069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -257, z: 0}
+  m_LocalPosition: {x: 0, y: -261, z: 0}
   m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

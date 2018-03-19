@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4677224653769936}
   - component: {fileID: 212383345633985070}
   m_Layer: 0
-  m_Name: Hexagon
+  m_Name: Earth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 114207717989855728}
   - component: {fileID: 61909501267900934}
   m_Layer: 0
-  m_Name: Card - Hexagon Green
+  m_Name: Card - Earth Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragDist: 0
-  symbolSprite: 3
+  symbolSprite: 1
   symbolColor: 1
   backgroundRenderer: {fileID: 212664633923072824}
   symbolRenderer: {fileID: 212383345633985070}
@@ -176,7 +176,7 @@ SpriteRenderer:
   m_SortingLayerID: 1390017099
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f36f67c542b793b48b956a5c7d73f497, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d26a9afe14fc44c43ab1cd6b6aef964c, type: 3}
   m_Color: {r: 0.34442192, g: 1, b: 0.25735295, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -220,7 +220,7 @@ SpriteRenderer:
   m_SortingLayerID: 1390017099
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2737f1f0b2da3ca4eba8c40b483eae70, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8c273d9e76b5795428dd49c487bd9306, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

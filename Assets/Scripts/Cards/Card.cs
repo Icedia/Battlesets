@@ -14,7 +14,7 @@ public class Card : MonoBehaviour
 
     [SerializeField] private float dragDist;
 
-    public enum Symbol { square, triangle, circle, hexagon, pentagon };
+    public enum Symbol { air, earth, fire, water, soul };
     public enum SymbolColor { red, green, blue };
 
     [SerializeField] public Symbol symbolSprite;
@@ -81,7 +81,7 @@ public class Card : MonoBehaviour
             CardDropped();
         }
 
-        if (dragDist >= 150f)
+        if (dragDist >= 100f)
         {
             dragDist = 0;
             if (CardPlaced != null)
