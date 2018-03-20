@@ -255,7 +255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 258, y: 24.00002}
+  m_AnchoredPosition: {x: 236, y: 71}
   m_SizeDelta: {x: 186.52, y: 35.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &325706313
@@ -304,7 +304,6 @@ MonoBehaviour:
   - {fileID: 114562008978894760, guid: 95387276758e22d439d526762b07c26f, type: 2}
   setAmount: 3
   currentSequence: []
-  currentSequenceNum: 0
   setCopy: []
 --- !u!4 &325706315
 Transform:
@@ -330,8 +329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e68a6e1bf5efbc438852aa65d052a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultTurnTime: 60
-  countDown: {fileID: 1777415246}
+  defaultTurnTime: 5
+  countDownText: {fileID: 1777415246}
   sequence: {fileID: 325706314}
   cardHolder: {fileID: 23476415}
   player: {fileID: 1162146930}
@@ -1151,7 +1150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -269.4, y: 21}
+  m_AnchoredPosition: {x: -236, y: 53}
   m_SizeDelta: {x: 186.52, y: 35.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1736495069

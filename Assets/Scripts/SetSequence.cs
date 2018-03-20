@@ -34,8 +34,7 @@ public class SetSequence : MonoBehaviour
     public void GenerateSequence()
     {
         // Reset the sequence.
-        currentSequence.Clear();
-        currentSequenceNum = 0;
+        ClearSequence();
 
         // Make the sequence.
         setCopy = new List<Set>(sets);
@@ -66,5 +65,19 @@ public class SetSequence : MonoBehaviour
             currentSequence[i].transform.position = new Vector2(100 + (i * 175), 250);
             currentSequence[i].transform.localScale = new Vector2(0.6f, 0.6f);
         }
+    }
+
+    /// <summary>
+    /// Clear the sequence list and remove all the sprites.
+    /// </summary>
+    private void ClearSequence()
+    {
+        for (int i = 0; i < currentSequence.Count; i++)
+        {
+            Destroy(currentSequence[i].gameObject);
+        }
+
+        currentSequence.Clear();
+        currentSequenceNum = 0;
     }
 }
