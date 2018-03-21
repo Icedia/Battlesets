@@ -9,6 +9,10 @@ public class SetSequence : MonoBehaviour
 
     // How many sets are made in a sequence. (Default to 3)
     [SerializeField] private int setAmount = 3;
+    public int SetAmount
+    {
+        get { return setAmount; }
+    }
 
     // The current sequence.
     [SerializeField] private List<Set> currentSequence = new List<Set>();

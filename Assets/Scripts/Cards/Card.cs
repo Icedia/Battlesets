@@ -86,7 +86,7 @@ public class Card : MonoBehaviour
             CardDropped();
         }
 
-        if (dragDist >= 100f)
+        if (dragDist >= 75f)
         {
             dragDist = 0;
             if (CardPlaced != null)

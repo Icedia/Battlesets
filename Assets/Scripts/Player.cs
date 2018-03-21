@@ -28,11 +28,13 @@ public class Player : MonoBehaviour, IHealth<float>
 
     public void DefendAnim()
     {
+        print("Player defend!");
         GetComponent<SpriteRenderer>().sprite = playerDefend;
     }
 
     public void AttackAnim()
     {
+        print("Player attack!");
         GetComponent<SpriteRenderer>().sprite = playerAttack;
     }
 

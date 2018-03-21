@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class TurnManager : MonoBehaviour
 {
     // Player Turn
-    private bool attackTurn = false;
-    private bool defendTurn = false;
+    [SerializeField] private bool attackTurn = false;
+    [SerializeField] private bool defendTurn = false;
 
     // Check if we can play cards.
     private bool cardPhase = false;
@@ -65,8 +65,8 @@ public class TurnManager : MonoBehaviour
             cardPhase = true;
             attackTurn = false;
             defendTurn = true;
-            player.AttackAnim();
-            enemy.DefendAnim();
+            player.DefendAnim();
+            enemy.AttackAnim();
 
             StartCardPhase();
         }
@@ -75,8 +75,8 @@ public class TurnManager : MonoBehaviour
             cardPhase = true;
             defendTurn = false;
             attackTurn = true;
-            player.DefendAnim();
-            enemy.AttackAnim();
+            player.AttackAnim();
+            enemy.DefendAnim();
 
             StartCardPhase();
         }
