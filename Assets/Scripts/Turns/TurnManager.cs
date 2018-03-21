@@ -3,19 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TurnManager : MonoBehaviour {
-    private enum turn { TurnTimer };
-   // private enum animturn { AnimTimer};
-    private bool attackTurn = false;
-    private bool defendTurn = false;
-    private bool currentTurn = false;
-    [SerializeField]private float defaultTurnTime = 5;
-    private float currentTime;
-    [SerializeField] private Text countDown;
+public class TurnManager : MonoBehaviour
+{
+    // Player Turn
+    [SerializeField] private bool attackTurn = false;
+    [SerializeField] private bool defendTurn = false;
 
+    // Check if we can play cards.
+    private bool cardPhase = false;
+
+    // Time each turn.
+    [SerializeField] private float defaultTurnTime = 5;
+    // Time that is being count down.
+    [SerializeField] private float currentTime;
+    // Countdown UI text.
+    [SerializeField] private Text countDownText;
+
+    // IEnumerators.
+    private IEnumerator countDown;
+    private IEnumerator animationTime;
+
+    // Scripts.
     [SerializeField] private SetSequence sequence;
     [SerializeField] private CardHolder cardHolder;
-
     [SerializeField] private Player player;
     [SerializeField] private Enemy enemy;
 
@@ -23,51 +33,58 @@ public class TurnManager : MonoBehaviour {
 
 	void Start ()
     {
-        attackTurn = true;
-        currentTime = defaultTurnTime;
-        StartCoroutine(TurnTimer());
-    }
+        // Assign IEnumerators.
+        countDown = CountDown();
+        animationTime = AnimationTime();
 
+        // Set default values.
+        currentTime = defaultTurnTime;
+        UpdateCountDownText();
+
+        attackTurn = true;
+        cardPhase = true;
+        currentTime = defaultTurnTime;
+
+        StartCardPhase();
+    }
+    
     void Update()
     {
-        countDown.text = "Time left:" + " " + currentTime;
-        if (sequence.currentSequenceNum > sequence.CurrentSequence.Count)
-        {
-            StopCoroutine(TurnTimer());
-            EndTurn();
-
-        }
-
+        CheckSequenceComplete();
     }
 
-
+    /// <summary>
+    /// Switches the turns between attacking and defending.
+    /// </summary>
     void CheckTurn()
     {
+        StopCoroutine(animationTime);
+
         if (attackTurn == true)
         {
-            currentTurn = true;
+            cardPhase = true;
             attackTurn = false;
             defendTurn = true;
-            player.AttackAnim();
-            enemy.DefendAnim();
-
-            StartCoroutine(TurnTimer());
-
-        }
-        else
-        {
-            currentTurn = true;
-            defendTurn = false;
-            attackTurn = true;
             player.DefendAnim();
             enemy.AttackAnim();
 
-            StartCoroutine(TurnTimer());
+            StartCardPhase();
+        }
+        else
+        {
+            cardPhase = true;
+            defendTurn = false;
+            attackTurn = true;
+            player.AttackAnim();
+            enemy.DefendAnim();
+
+            StartCardPhase();
         }
     }
+
     void EndTurn()
     {
-
+        cardPhase = false;
         cardHolder.HideCards();
         Debug.Log("end card select");
 
@@ -80,38 +97,67 @@ public class TurnManager : MonoBehaviour {
             player.DoDamage(30 - turnDamage);
         }
 
-        StartCoroutine(AnimationTime());
+        animationTime = AnimationTime();
+        StartCoroutine(animationTime);
     }
 
-    IEnumerator TurnTimer()
+    void StartCardPhase()
     {
-        Debug.Log("select cards");
-        sequence.Generate();
+        Debug.Log("Start CardPhase");
+        sequence.GenerateSequence();
         cardHolder.GetCards();
 
-        StartCoroutine(CountDown(defaultTurnTime));
- 
-        yield return new WaitForSeconds(defaultTurnTime);
-
-        EndTurn();
-
+        // Start the countdown.
+        countDown = CountDown();
+        StartCoroutine(countDown);
     }
 
-    IEnumerator CountDown(float time)
+    IEnumerator CountDown()
     {
-        for (int i = 0; i < defaultTurnTime; i++)
+        currentTime = defaultTurnTime;
+        UpdateCountDownText();
+
+        while (true)
         {
-            if (time > 0)
+            yield return new WaitForSeconds(1);
+            print("countdown");
+            currentTime--;
+            UpdateCountDownText();
+
+            // Check if the time is up.
+            if (currentTime == 0)
             {
-                yield return new WaitForSeconds(1);
-                time--;
-                currentTime = time;
-                //Debug.Log(currentTime);
+                StopCoroutine(countDown);
+                EndTurn();
             }
-        }       
+        }
     }
+
+    /// <summary>
+    /// Update the text of our countdown timer.
+    /// </summary>
+    void UpdateCountDownText()
+    {
+        countDownText.text = "Time left:" + " " + currentTime;
+    }
+
+    /// <summary>
+    /// Checks if the player has finished the sequence before the times.
+    /// </summary>
+    void CheckSequenceComplete()
+    {
+        if (sequence.CurrentSequenceNum > sequence.CurrentSequence.Count - 1 &&
+            cardPhase == true)
+        {
+            print("Sequence Finished");
+            StopCoroutine(countDown);
+            EndTurn();
+        }
+    }
+
     IEnumerator AnimationTime()
     {
+        print("Animating");
         yield return new WaitForSeconds(5);
         Debug.Log("end animation");
         CheckTurn();

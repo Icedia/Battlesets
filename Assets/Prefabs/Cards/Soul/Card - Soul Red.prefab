@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5111079b3f7ef149ba326c6886a2c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragDist: 0
   symbolSprite: 4
   symbolColor: 0
   backgroundRenderer: {fileID: 212664633923072824}
@@ -177,7 +176,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6f1fcaea961c2804f8884baee7c8104a, type: 3}
-  m_Color: {r: 1, g: 0.25735295, b: 0.28808329, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.041379448, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

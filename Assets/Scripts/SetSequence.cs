@@ -2,90 +2,86 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class SetSequence : MonoBehaviour
+{
+    // All available cards.
+    [SerializeField] private List<Set> sets = new List<Set>();
 
-public class SetSequence : MonoBehaviour {
+    // How many sets are made in a sequence. (Default to 3)
+    [SerializeField] private int setAmount = 3;
+    public int SetAmount
+    {
+        get { return setAmount; }
+    }
 
-	[SerializeField] private List<Sprite> currentSequence = new List<Sprite>();
-    public List<Sprite> CurrentSequence
+    // The current sequence.
+    [SerializeField] private List<Set> currentSequence = new List<Set>();
+    public List<Set> CurrentSequence
     {
         get { return currentSequence; }
     }
 
-    [SerializeField] private Sprite[] shapes;
-    [SerializeField] private SpriteRenderer[] seq;
-
-    public enum Symbol { air, earth, fire, water, soul };
-    public enum SymbolColor { red, green, blue };
-
-    [SerializeField] public Symbol[] symbolSprite;
-    [SerializeField] public SymbolColor[] symbolColor;
-
-    public int currentSequenceNum = 0;
-
-    [SerializeField] private Sprite[] currentSpriteArray;
-    [SerializeField] private Sprite temp;
-
-    public void Generate()
+    // The sequence we are currently at.
+    private int currentSequenceNum = 0;
+    public int CurrentSequenceNum
     {
-        currentSequenceNum = 0;
+        get { return currentSequenceNum; }
+        set { currentSequenceNum = value; }
+    }
 
-        for (int i = 0; i < shapes.Length; i++)
+    // Copy of all possible sets to prevent duplicate sets in the sequence.
+    [SerializeField] private List<Set> setCopy;
+
+    /// <summary>
+    /// Create the sequence of sets to play.
+    /// </summary>
+    public void GenerateSequence()
+    {
+        // Reset the sequence.
+        ClearSequence();
+
+        // Make the sequence.
+        setCopy = new List<Set>(sets);
+        for (int i = 0; i < setAmount; i++)
         {
-            currentSequence.Add(shapes[i]);
+            // Get the random set from the copy list.
+            int rndSet = Random.Range(0, setCopy.Count);
+            // Spawn the set.
+            Set sequenceSet = Instantiate(setCopy[rndSet]) as Set;
+            sequenceSet.transform.parent = transform;
+
+            // Add it to the list of all the sequences.
+            currentSequence.Add(sequenceSet);
+            // Remove it from the copylist of all possible sets so we wont spawn a duplicate set.
+            setCopy.RemoveAt(rndSet);
         }
 
-        for (int j = 0; j < 3; j++)
+        AllignSequence();
+    }
+    
+    /// <summary>
+    /// Puts all sets in a row by order.
+    /// </summary>
+    private void AllignSequence()
+    {
+        for (int i = currentSequence.Count; i --> 0;)
         {
-            for (int i = 0; i < seq.Length; i++)
-            {
-                GetRandomSprite();
-                seq[i].sprite = temp;
-                currentSpriteArray[i] = temp;
-                symbolSprite[i] = CheckSymbol(currentSpriteArray[i].name);
-                seq[i].color = SetColor(symbolColor[j]);
-                symbolColor[j] = (SymbolColor)Random.Range(0, symbolColor.Length);
-            }
+            currentSequence[i].transform.position = new Vector2(100 + (i * 175), 250);
+            currentSequence[i].transform.localScale = new Vector2(0.6f, 0.6f);
+        }
+    }
+
+    /// <summary>
+    /// Clear the sequence list and remove all the sprites.
+    /// </summary>
+    private void ClearSequence()
+    {
+        for (int i = 0; i < currentSequence.Count; i++)
+        {
+            Destroy(currentSequence[i].gameObject);
         }
 
         currentSequence.Clear();
-    }
-
-    Color SetColor(SymbolColor symbolColor)
-    {
-        if (symbolColor == SymbolColor.red)
-        {
-            return Color.red;
-        }
-        else if (symbolColor == SymbolColor.green)
-        {
-            return Color.green;
-        }
-        else
-        {
-            return Color.blue;
-        }
-    }
-
-    Symbol CheckSymbol(string spriteName)
-    {
-        switch (spriteName)
-        {
-            case ("Rune_Air"):
-                return Symbol.air;
-            case ("Rune_Earth"):
-                return Symbol.earth;
-            case ("Rune_Fire"):
-                return Symbol.fire;
-            case ("Rune_Water"):
-                return Symbol.water;
-            default:
-                return Symbol.soul;
-        }
-    }
-
-    private void GetRandomSprite()
-    {
-        temp = currentSequence[Random.Range(0, currentSequence.Count)];
-        currentSequence.Remove(temp);
+        currentSequenceNum = 0;
     }
 }

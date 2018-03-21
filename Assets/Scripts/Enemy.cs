@@ -27,11 +27,13 @@ public class Enemy : MonoBehaviour, IHealth<float>
 
     public void DefendAnim()
     {
+        print("Enemy defend!");
         GetComponent<SpriteRenderer>().sprite = enemyDefend;
     }
 
     public void AttackAnim()
     {
+        print("Enemy attack!");
         GetComponent<SpriteRenderer>().sprite = enemyAttack;
     }
 
