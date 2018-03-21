@@ -5,37 +5,35 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IHealth<float>
 {
-    private float playerHealth;
-    [SerializeField]private Slider playerHealthBar;
+    [SerializeField] private float playerHealth;
+    [SerializeField] private Slider playerHealthBar;
 
-    [SerializeField] private Sprite playerDefend;
+    // Spriterenderer 
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
+    // Sprites
+    [SerializeField] private Sprite playerIdle;
+    [SerializeField] private Sprite playerHurt;
     [SerializeField] private Sprite playerAttack;
 
 	void Start ()
     {
         Health(100);
 	}
-	
-	void Update ()
-    {
-        playerHealthBar.value = playerHealth;
-        if (Input.GetKeyUp(KeyCode.T))
-        {
-            DoDamage(10);
-        }
 
+    public void IdleAnim()
+    {
+        spriteRenderer.sprite = playerIdle;
     }
 
-    public void DefendAnim()
+    public void HurtAnim()
     {
-        print("Player defend!");
-        GetComponent<SpriteRenderer>().sprite = playerDefend;
+        spriteRenderer.sprite = playerHurt;
     }
 
     public void AttackAnim()
     {
-        print("Player attack!");
-        GetComponent<SpriteRenderer>().sprite = playerAttack;
+        spriteRenderer.sprite = playerAttack;
     }
 
     public void Health(float health)
@@ -46,5 +44,6 @@ public class Player : MonoBehaviour, IHealth<float>
     public void DoDamage(int damage)
     {
         playerHealth -= damage;
+        playerHealthBar.value = playerHealth;
     }
 }

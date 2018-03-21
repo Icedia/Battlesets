@@ -599,9 +599,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683ae19f149c84c41bb134727549a278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: 0
   enemyHealthBar: {fileID: 276009138}
-  enemyDefend: {fileID: 21300000, guid: 5c16dc49d08277b42a3761121fd405f4, type: 3}
-  enemyAttack: {fileID: 21300000, guid: d2215f4dd03c131448cd288f68c9c677, type: 3}
+  spriteRenderer: {fileID: 955472533}
+  enemyIdle: {fileID: 21300000, guid: d93bce3d70a77e74181218b2be9cbd2c, type: 3}
+  enemyHurt: {fileID: 21300000, guid: 7c821401590147a43a4bd41975dcd1b6, type: 3}
+  enemyAttack: {fileID: 21300000, guid: 638fadc5680418b499e03238823d5c51, type: 3}
 --- !u!212 &955472533
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -927,9 +930,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3beca561d7bfc4c80b931319c17ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: 0
   playerHealthBar: {fileID: 1691933759}
-  playerDefend: {fileID: 21300000, guid: 4c4e8b79e9ee4e340bd38222e8e635d0, type: 3}
-  playerAttack: {fileID: 21300000, guid: e84a992cb66b3904299f3a4b5f583c21, type: 3}
+  spriteRenderer: {fileID: 1162146928}
+  playerIdle: {fileID: 21300000, guid: 8c5fc1575b045ee4881c4216b12ec3ba, type: 3}
+  playerHurt: {fileID: 21300000, guid: 8c5fc1575b045ee4881c4216b12ec3ba, type: 3}
+  playerAttack: {fileID: 21300000, guid: 8c5fc1575b045ee4881c4216b12ec3ba, type: 3}
 --- !u!1 &1295977989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,7 +1265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1267,11 +1273,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 19
+    m_FontSize: 42
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 42
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1300,8 +1306,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -482, y: 291}
-  m_SizeDelta: {x: 209.8, y: 57}
+  m_AnchoredPosition: {x: -461.19, y: 291}
+  m_SizeDelta: {x: 251.42, y: 57}
   m_Pivot: {x: 0.5, y: 0.49999982}
 --- !u!1 &1777552299
 GameObject:
