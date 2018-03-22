@@ -58,6 +58,7 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     void CheckTurn()
     {
+        turnDamage = 0;
         StopCoroutine(animationTime);
 
         if (attackTurn == true)
@@ -65,8 +66,6 @@ public class TurnManager : MonoBehaviour
             cardPhase = true;
             attackTurn = false;
             defendTurn = true;
-            player.DefendAnim();
-            enemy.AttackAnim();
 
             StartCardPhase();
         }
@@ -75,11 +74,13 @@ public class TurnManager : MonoBehaviour
             cardPhase = true;
             defendTurn = false;
             attackTurn = true;
-            player.AttackAnim();
-            enemy.DefendAnim();
 
             StartCardPhase();
         }
+
+        // Default animations.
+        player.IdleAnim();
+        enemy.IdleAnim();
     }
 
     void EndTurn()
@@ -120,7 +121,6 @@ public class TurnManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            print("countdown");
             currentTime--;
             UpdateCountDownText();
 
@@ -158,6 +158,18 @@ public class TurnManager : MonoBehaviour
     IEnumerator AnimationTime()
     {
         print("Animating");
+
+        if (attackTurn)
+        {
+            player.AttackAnim();
+            enemy.HurtAnim();
+        }
+        else
+        {
+            enemy.AttackAnim();
+            player.HurtAnim();
+        }
+
         yield return new WaitForSeconds(5);
         Debug.Log("end animation");
         CheckTurn();
