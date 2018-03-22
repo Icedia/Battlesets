@@ -12,6 +12,11 @@ public class TurnManager : MonoBehaviour
     // Check if we can play cards.
     private bool cardPhase = false;
 
+    // Turn indicator
+    [SerializeField] private Image turnIndicator;
+    [SerializeField] private Sprite attIndicatorSprite;
+    [SerializeField] private Sprite defIndicatorSprite;
+
     // Time each turn.
     [SerializeField] private float defaultTurnTime = 5;
     // Time that is being count down.
@@ -63,6 +68,8 @@ public class TurnManager : MonoBehaviour
 
         if (attackTurn == true)
         {
+            turnIndicator.sprite = defIndicatorSprite;
+
             cardPhase = true;
             attackTurn = false;
             defendTurn = true;
@@ -71,6 +78,8 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
+            turnIndicator.sprite = attIndicatorSprite;
+
             cardPhase = true;
             defendTurn = false;
             attackTurn = true;
