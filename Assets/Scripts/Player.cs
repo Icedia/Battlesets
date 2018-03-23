@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour, IHealth<float>
 {
@@ -21,6 +23,11 @@ public class Player : MonoBehaviour, IHealth<float>
         Health(100);
 	}
 
+    void Update()
+    {
+        Defeat();
+    }
+
     public void IdleAnim()
     {
         spriteRenderer.sprite = playerIdle;
@@ -39,6 +46,15 @@ public class Player : MonoBehaviour, IHealth<float>
     public void Health(float health)
     {
         playerHealth = health;
+    }
+
+    private void Defeat()
+    {
+        if (playerHealth <= 0)
+        {
+            SceneManager.LoadScene("Defeat");
+        }
+        //if player health <=0 change scene
     }
 
     public void DoDamage(int damage)
