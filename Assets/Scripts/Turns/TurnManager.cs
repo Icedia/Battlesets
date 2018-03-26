@@ -17,6 +17,10 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private Sprite attIndicatorSprite;
     [SerializeField] private Sprite defIndicatorSprite;
 
+    // Event when a card is pressed down.
+    public delegate void OnTimeUp();
+    public static event OnTimeUp TimeUp;
+    
     // Time each turn.
     [SerializeField] private float defaultTurnTime = 5;
     // Time that is being count down.
@@ -136,6 +140,10 @@ public class TurnManager : MonoBehaviour
             // Check if the time is up.
             if (currentTime == 0)
             {
+                if (TimeUp != null)
+                {
+                    TimeUp();
+                }
                 StopCoroutine(countDown);
                 EndTurn();
             }

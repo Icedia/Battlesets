@@ -22,6 +22,7 @@ public class CardHolder : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        Card.CardReset += AllignCards;
         Card.CardDropped += AllignCards;
         Card.CardPlaced += CardSet;
     }
@@ -53,7 +54,7 @@ public class CardHolder : MonoBehaviour
         }
         
         // Instantiate all hand cards.
-        for (int i = 0; i < cardAmount-2; i++)
+        for (int i = 0; i < cardAmount-3; i++)
         {
             Card card = Instantiate(cards[Random.Range(0, cards.Count)]) as Card;
             handCards.Add(card);
@@ -100,19 +101,13 @@ public class CardHolder : MonoBehaviour
     /// </summary>
     void AllignCards()
     {
-        float cardHalfWidth = cards[0].BackgroundRenderer.bounds.size.x / 2;
-        float startPos = (cardHalfWidth * (handCards.Count - 1) / 2);
-
-        float totalTwist = -45f;
-        float startTwist = -1f * (totalTwist / 2f);
-        float twistPerCard = totalTwist / handCards.Count;
+        float cardWidth = cards[0].BackgroundRenderer.bounds.size.x;
+        float startPos = (cardWidth * (handCards.Count - 1) / 2);
 
         // Center the cards in the hand and put offset between each card.
         for (int i = 0; i < handCards.Count; i++)
         {
-            float twistForThisCard = startTwist + (i * twistPerCard);
-            handCards[i].transform.eulerAngles = new Vector3(0, 0, twistForThisCard);
-            handCards[i].transform.position = new Vector2(-startPos + i * cardHalfWidth, transform.position.y);
+            handCards[i].transform.position = new Vector2(-startPos + i * cardWidth, transform.position.y - 65);
         }
 
         // Set rendering order.
@@ -158,6 +153,7 @@ public class CardHolder : MonoBehaviour
     /// </summary>
     void OnDestroy()
     {
+        Card.CardReset -= AllignCards;
         Card.CardDropped -= AllignCards;
         Card.CardPlaced -= CardSet;
     }
