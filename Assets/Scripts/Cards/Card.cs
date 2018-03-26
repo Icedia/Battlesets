@@ -23,9 +23,6 @@ public class Card : MonoBehaviour
     // Static boolean to keep track of the card that is being dragged.
     static bool isDragging = false;
 
-    // Amount of distance between the mousepointer and the card.
-    private float dragDist;
-
     public enum Symbol { air, earth, fire, water, soul };
     public enum SymbolColor { red, green, blue };
 
@@ -79,8 +76,6 @@ public class Card : MonoBehaviour
         isDragging = true;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = Vector2.Lerp(transform.position, mousePos, 0.2f);
-
-        dragDist = Vector2.Distance(transform.position, mousePos);
     }
 
     // Highlighting the card clicking it.
@@ -95,7 +90,7 @@ public class Card : MonoBehaviour
         symbolRenderer.sortingLayerName = "HighlightCard";
     }
 
-    // Stop dragging and reallign our cards.
+    // Stop dragging, check if we can play the card and reallign our cards.
     void OnMouseUp()
     {
         // Check if we are within the dorpfield.

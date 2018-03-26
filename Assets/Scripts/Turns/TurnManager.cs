@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TurnManager : MonoBehaviour
 {
@@ -12,10 +13,14 @@ public class TurnManager : MonoBehaviour
     // Check if we can play cards.
     private bool cardPhase = false;
 
-    // Turn indicator
+    // Turn indicator.
     [SerializeField] private Image turnIndicator;
     [SerializeField] private Sprite attIndicatorSprite;
     [SerializeField] private Sprite defIndicatorSprite;
+    // Attack indicator.
+    [SerializeField] private Image attackIndicator;
+    [SerializeField] private Sprite playerIndicatorSprite;
+    [SerializeField] private Sprite enemyIndicatorSprite;
 
     // Event when a card is pressed down.
     public delegate void OnTimeUp();
@@ -73,6 +78,8 @@ public class TurnManager : MonoBehaviour
         if (attackTurn == true)
         {
             turnIndicator.sprite = defIndicatorSprite;
+            Sequence tweenSequence = DOTween.Sequence();
+            tweenSequence.Append(turnIndicator.transform.DOLocalRotate(new Vector3(0, 0, 720), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.OutQuad));
 
             cardPhase = true;
             attackTurn = false;
@@ -83,6 +90,8 @@ public class TurnManager : MonoBehaviour
         else
         {
             turnIndicator.sprite = attIndicatorSprite;
+            Sequence tweenSequence = DOTween.Sequence();
+            tweenSequence.Append(turnIndicator.transform.DOLocalRotate(new Vector3(0, 0, 720), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.OutQuad));
 
             cardPhase = true;
             defendTurn = false;
@@ -187,8 +196,34 @@ public class TurnManager : MonoBehaviour
             player.HurtAnim();
         }
 
-        yield return new WaitForSeconds(5);
+        DisplayAttackScreen();
+        yield return new WaitForSeconds(4.5f);
         Debug.Log("end animation");
         CheckTurn();
+    }
+
+    void DisplayAttackScreen()
+    {
+        attackIndicator.gameObject.SetActive(true);
+        float endPos = 0;
+
+        if (attackTurn)
+        {
+            attackIndicator.sprite = playerIndicatorSprite;
+            attackIndicator.rectTransform.localPosition = new Vector2(-1080, 17.5f);
+            endPos = 1080;
+        }
+        else
+        {
+            attackIndicator.sprite = enemyIndicatorSprite;
+            attackIndicator.rectTransform.localPosition = new Vector2(1080, 17.5f);
+            endPos = -1080;
+        }
+
+        Sequence tweenSequence = DOTween.Sequence();
+        tweenSequence.PrependInterval(0.5f);
+        tweenSequence.Append(attackIndicator.rectTransform.DOLocalMoveX(0, 1.5f).SetEase(Ease.OutBounce));
+        tweenSequence.PrependInterval(0.5f);
+        tweenSequence.Append(attackIndicator.rectTransform.DOLocalMoveX(endPos, 1.5f).SetEase(Ease.InOutQuart));
     }
 }

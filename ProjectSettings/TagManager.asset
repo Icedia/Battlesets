@@ -59,3 +59,6 @@ TagManager:
   - name: HighlightCard
     uniqueID: 3994771739
     locked: 0
+  - name: Slides
+    uniqueID: 1933117553
+    locked: 0
