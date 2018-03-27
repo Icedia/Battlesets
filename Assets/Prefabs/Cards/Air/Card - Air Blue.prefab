@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4081108584881654}
   - component: {fileID: 114207717989855728}
-  - component: {fileID: 61031631606921122}
+  - component: {fileID: 61374393899934404}
   m_Layer: 0
   m_Name: Card - Air Blue
   m_TagString: Untagged
@@ -101,7 +101,7 @@ Transform:
   m_Father: {fileID: 4081108584881654}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61031631606921122
+--- !u!61 &61374393899934404
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -117,14 +117,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 215, y: 334}
-    newSize: {x: 4.68, y: 7.2}
+    oldSize: {x: 152.66667, y: 222}
+    newSize: {x: 152.66667, y: 222}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 215, y: 334}
+  m_Size: {x: 152.66667, y: 222}
   m_EdgeRadius: 0
 --- !u!114 &114207717989855728
 MonoBehaviour:
@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5111079b3f7ef149ba326c6886a2c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragDist: 0
   symbolSprite: 0
   symbolColor: 2
   backgroundRenderer: {fileID: 212664633923072824}
@@ -174,10 +173,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1390017099
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4202bb19b46e410419e6633a3815b153, type: 3}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2db7a47c1e41d3b4188ae59fb0f55492, type: 3}
+  m_Color: {r: 0.023529412, g: 0.49803922, b: 0.7882353, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -218,14 +217,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1390017099
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8c273d9e76b5795428dd49c487bd9306, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d9340484493b484e8a63a6f31a2f0f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.68, y: 7.2}
+  m_Size: {x: 152.66667, y: 222}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

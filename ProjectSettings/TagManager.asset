@@ -47,9 +47,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Entity
+    uniqueID: 966553397
+    locked: 0
+  - name: CardDropfield
+    uniqueID: 2421675745
+    locked: 0
   - name: Card
     uniqueID: 1390017099
     locked: 0
   - name: HighlightCard
     uniqueID: 3994771739
+    locked: 0
+  - name: Slides
+    uniqueID: 1933117553
     locked: 0
