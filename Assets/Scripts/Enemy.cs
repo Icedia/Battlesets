@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 
 public class Enemy : MonoBehaviour, IHealth<float>
@@ -60,5 +61,6 @@ public class Enemy : MonoBehaviour, IHealth<float>
     {
         enemyHealth -= damage;
         enemyHealthBar.value = enemyHealth;
+        transform.DOShakePosition(0.75f, 5, 50, 90);
     }
 }
