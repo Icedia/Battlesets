@@ -110,18 +110,10 @@ public class TurnManager : MonoBehaviour
 
     void EndTurn()
     {
-        cardPhase = false;
-        cardHolder.HideCards();
         Debug.Log("end card select");
 
-        if (attackTurn)
-        {
-            enemy.DoDamage(turnDamage);
-        }
-        else if (defendTurn)
-        {
-            player.DoDamage(30 - turnDamage);
-        }
+        cardPhase = false;
+        cardHolder.HideCards();
 
         animationTime = AnimationTime();
         StartCoroutine(animationTime);
@@ -187,23 +179,8 @@ public class TurnManager : MonoBehaviour
     IEnumerator AnimationTime()
     {
         print("Animating");
-
-        if (attackTurn)
-        {
-            player.AttackAnim();
-            enemy.HurtAnim();
-            PlayerSound.Play();
-            //play magic sound
-        }
-        else
-        {
-            enemy.AttackAnim();
-            player.HurtAnim();
-            EnemySound.Play();
-            //player hit sound
-        }
-
-        DisplayAttackScreen();
+		
+		DisplayAttackScreen();
         yield return new WaitForSeconds(4.5f);
         Debug.Log("end animation");
         CheckTurn();
@@ -227,10 +204,37 @@ public class TurnManager : MonoBehaviour
             endPos = -1080;
         }
 
-        Sequence tweenSequence = DOTween.Sequence();
-        tweenSequence.PrependInterval(0.5f);
-        tweenSequence.Append(attackIndicator.rectTransform.DOLocalMoveX(0, 1.5f).SetEase(Ease.OutBounce));
-        tweenSequence.PrependInterval(0.5f);
-        tweenSequence.Append(attackIndicator.rectTransform.DOLocalMoveX(endPos, 1.5f).SetEase(Ease.InOutQuart));
+        Sequence indicatorSequence = DOTween.Sequence();
+        indicatorSequence.SetDelay(0.5f);
+        indicatorSequence.Append(attackIndicator.rectTransform.DOLocalMoveX(0, 1.5f).SetEase(Ease.OutBounce));
+        indicatorSequence.PrependInterval(0.5f);
+        indicatorSequence.Append(attackIndicator.rectTransform.DOLocalMoveX(endPos, 1.5f).SetEase(Ease.InOutQuart));
+
+        Sequence damageSequence = DOTween.Sequence();
+        damageSequence.SetDelay(1.5f);
+        damageSequence.AppendCallback(SetTurnDamage);
+    }
+
+    void SetTurnDamage()
+    {
+        if (attackTurn)
+        {
+            enemy.DoDamage(turnDamage);
+            player.AttackAnim();
+            enemy.HurtAnim();
+			
+            PlayerSound.Play();
+            //play magic sound
+        }
+        else if (defendTurn)
+        {
+            player.DoDamage((sequence.SetAmount * 10) - turnDamage);
+            enemy.AttackAnim();
+            player.HurtAnim();
+			
+			
+            EnemySound.Play();
+            //player hit sound
+        }
     }
 }

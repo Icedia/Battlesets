@@ -64,10 +64,11 @@ public class SetSequence : MonoBehaviour
     /// </summary>
     private void AllignSequence()
     {
-        for (int i = currentSequence.Count; i --> 0;)
+        int j = 0;
+        for (int i = currentSequence.Count; i --> 0; j++)
         {
-            currentSequence[i].transform.position = new Vector2(100 + (i * 175), 250);
-            currentSequence[i].transform.localScale = new Vector2(0.6f, 0.6f);
+            currentSequence[i].transform.position = new Vector2((550 - (j * 150)), 280);
+            currentSequence[i].transform.localScale = new Vector2(0.8f, 0.8f);
         }
     }
 

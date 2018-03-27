@@ -39,7 +39,7 @@ public class CardHolder : MonoBehaviour
             return;
         }
 
-        for (int j = 0; j < 3; j++)
+        for (int j = 0; j < setSequence.SetAmount; j++)
         {
             for (int i = 0; i < cards.Count; i++)
             {
@@ -54,7 +54,7 @@ public class CardHolder : MonoBehaviour
         }
         
         // Instantiate all hand cards.
-        for (int i = 0; i < cardAmount-3; i++)
+        for (int i = 0; i < cardAmount - setSequence.SetAmount; i++)
         {
             Card card = Instantiate(cards[Random.Range(0, cards.Count)]) as Card;
             handCards.Add(card);
@@ -131,6 +131,8 @@ public class CardHolder : MonoBehaviour
             // Correct card.
             print("Correct!");
 
+            setSequence.CurrentSequence[setSequence.CurrentSequenceNum].SetResult(true);
+
             // Destroy and remove the card.
             handCards.Remove(card);
             Destroy(card.gameObject);
@@ -142,9 +144,11 @@ public class CardHolder : MonoBehaviour
         {
             // Wrong card.
             print("Wrong!");
+
+            setSequence.CurrentSequence[setSequence.CurrentSequenceNum].SetResult(false);
         }
 
-        setSequence.CurrentSequence[setSequence.CurrentSequenceNum].gameObject.SetActive(false);
+        //setSequence.CurrentSequence[setSequence.CurrentSequenceNum].gameObject.SetActive(false);
         setSequence.CurrentSequenceNum++;
     }
 
