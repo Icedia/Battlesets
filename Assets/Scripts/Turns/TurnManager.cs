@@ -21,6 +21,9 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private Image attackIndicator;
     [SerializeField] private Sprite playerIndicatorSprite;
     [SerializeField] private Sprite enemyIndicatorSprite;
+    //Timer
+    [SerializeField] private RectTransform timerArrow;
+    [SerializeField] private RectTransform clock;
 
     // Event when a card is pressed down.
     public delegate void OnTimeUp();
@@ -30,8 +33,6 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private float defaultTurnTime = 5;
     // Time that is being count down.
     [SerializeField] private float currentTime;
-    // Countdown UI text.
-    [SerializeField] private Text countDownText;
 
     // IEnumerators.
     private IEnumerator countDown;
@@ -56,7 +57,7 @@ public class TurnManager : MonoBehaviour
 
         // Set default values.
         currentTime = defaultTurnTime;
-        UpdateCountDownText();
+
 
         attackTurn = true;
         cardPhase = true;
@@ -129,17 +130,20 @@ public class TurnManager : MonoBehaviour
         countDown = CountDown();
         StartCoroutine(countDown);
     }
-
+    //Checks time for clock
     IEnumerator CountDown()
     {
         currentTime = defaultTurnTime;
-        UpdateCountDownText();
 
+        Sequence tweenSequence = DOTween.Sequence();
+        tweenSequence.Append( timerArrow.DOLocalRotate(new Vector3(0, 0, (timerArrow.rotation.z - 360)), defaultTurnTime, RotateMode.FastBeyond360).SetEase(Ease.Linear));
+        
+        tweenSequence.Append(clock.DOLocalRotate(new Vector3(0, 0, (timerArrow.rotation.z - 10)), 0.04f, RotateMode.Fast).SetLoops(20, LoopType.Yoyo).SetSpeedBased(true));
+        
         while (true)
         {
             yield return new WaitForSeconds(1);
             currentTime--;
-            UpdateCountDownText();
 
             // Check if the time is up.
             if (currentTime == 0)
@@ -157,10 +161,10 @@ public class TurnManager : MonoBehaviour
     /// <summary>
     /// Update the text of our countdown timer.
     /// </summary>
-    void UpdateCountDownText()
+  /*  void UpdateCountDownText()
     {
         countDownText.text = "Time left:" + " " + currentTime;
-    }
+    }*/
 
     /// <summary>
     /// Checks if the player has finished the sequence before the times.

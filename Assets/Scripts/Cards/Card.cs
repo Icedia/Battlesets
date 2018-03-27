@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+
     // Event when a card is pressed down.
     public delegate void OnCardPressed();
     public static event OnCardPressed CardPressed;
@@ -48,17 +49,22 @@ public class Card : MonoBehaviour
     // Highlighting the card when moving over it.
     void OnMouseEnter()
     {
-        if (!isDragging)
+        if (PauseGame.pause == false)
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y + 65);
-            backgroundRenderer.sortingLayerName = "HighlightCard";
-            symbolRenderer.sortingLayerName = "HighlightCard";
+
+            if (!isDragging)
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y + 65);
+                backgroundRenderer.sortingLayerName = "HighlightCard";
+                symbolRenderer.sortingLayerName = "HighlightCard";
+            }
         }
     }
 
     // Remove the highlight from the card.
     void OnMouseExit()
     {
+ 
         if (!isDragging)
         {
             if (CardReset != null)
@@ -73,50 +79,63 @@ public class Card : MonoBehaviour
     // Moving the card.
     void OnMouseDrag()
     {
-        isDragging = true;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = Vector2.Lerp(transform.position, mousePos, 0.2f);
+        if (PauseGame.pause == false)
+        {
+
+            isDragging = true;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = Vector2.Lerp(transform.position, mousePos, 0.2f);
+        }
     }
 
     // Highlighting the card clicking it.
     void OnMouseDown()
     {
-        transform.eulerAngles = Vector3.zero;
-        if (CardPressed != null)
+        if (PauseGame.pause == false)
         {
-            CardPressed();
+            Debug.Log("selected");
+            transform.eulerAngles = Vector3.zero;
+            if (CardPressed != null)
+            {
+                CardPressed();
+            }
+            backgroundRenderer.sortingLayerName = "HighlightCard";
+            symbolRenderer.sortingLayerName = "HighlightCard";
+
         }
-        backgroundRenderer.sortingLayerName = "HighlightCard";
-        symbolRenderer.sortingLayerName = "HighlightCard";
+     
     }
 
     // Stop dragging, check if we can play the card and reallign our cards.
     void OnMouseUp()
     {
-        // Check if we are within the dorpfield.
-        if (CardCheck != null)
+        if (PauseGame.pause == false)
         {
-            if (CardCheck())
+            // Check if we are within the dorpfield.
+            if (CardCheck != null)
             {
-                if (CardPlaced != null)
+                if (CardCheck())
                 {
-                    CardPlaced(this);
+                    if (CardPlaced != null)
+                    {
+                        CardPlaced(this);
+                    }
+                }
+                else
+                {
+                    if (CardReset != null)
+                    {
+                        CardReset();
+                    }
                 }
             }
-            else
-            {
-                if (CardReset != null)
-                {
-                    CardReset();
-                }
-            }
-        }
 
-        // Call allignment
-        isDragging = false;
-        if (CardDropped != null)
-        {
-            CardDropped();
+            // Call allignment
+            isDragging = false;
+            if (CardDropped != null)
+            {
+                CardDropped();
+            }
         }
     }
 }
