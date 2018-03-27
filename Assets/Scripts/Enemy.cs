@@ -65,5 +65,6 @@ public class Enemy : MonoBehaviour, IHealth<float>
     {
         enemyHealth -= damage;
         enemyHealthBar.value = enemyHealth;
+        transform.DOShakePosition(0.75f, 5, 50, 90);
     }
 }

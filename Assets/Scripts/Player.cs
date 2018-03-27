@@ -64,5 +64,6 @@ public class Player : MonoBehaviour, IHealth<float>
     {
         playerHealth -= damage;
         playerHealthBar.value = playerHealth;
+        transform.DOShakePosition(0.75f, 5, 50, 90);
     }
 }
