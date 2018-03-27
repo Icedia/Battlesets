@@ -180,7 +180,7 @@ public class TurnManager : MonoBehaviour
             EndTurn();
         }
     }
-
+    //regulates the time the animation has
     IEnumerator AnimationTime()
     {
         print("Animating");
