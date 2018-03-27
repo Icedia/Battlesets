@@ -121,6 +121,7 @@ public class DropField : MonoBehaviour
     {
         Card.CardPressed -= ShowDropField;
         Card.CardDropped -= HideDropField;
+        Card.CardCheck -= CheckInField;
         TurnManager.TimeUp -= HideDropField;
     }
 }

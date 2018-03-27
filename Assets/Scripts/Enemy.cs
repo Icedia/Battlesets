@@ -10,6 +10,10 @@ public class Enemy : MonoBehaviour, IHealth<float>
 {
     [SerializeField] private float enemyHealth;
     [SerializeField] private Slider enemyHealthBar;
+    [SerializeField] private GameObject sequence;
+    [SerializeField] private GameObject PlayAgain;
+
+
 
     // Spriterenderer 
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -56,8 +60,12 @@ public class Enemy : MonoBehaviour, IHealth<float>
         if(enemyHealth <= 0)
         {
             //stop game and show screen
-            victoryScreen.DOMoveY(89, 1f);
-            PauseGame.pause = true;
+            Sequence victoryTween = DOTween.Sequence();
+            victoryTween.SetDelay(3f);
+            victoryTween.Append(victoryScreen.DOMoveY(440, 1f));
+            sequence.SetActive(false);
+            PlayAgain.SetActive(true);
+
         }
     }
 

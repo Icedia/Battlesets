@@ -49,7 +49,9 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private AudioSource PlayerSound;
     public int turnDamage = 0;
 
-	void Start ()
+    Sequence tweenClockSequence;
+
+    void Start ()
     {
         // Assign IEnumerators.
         countDown = CountDown();
@@ -58,6 +60,7 @@ public class TurnManager : MonoBehaviour
         // Set default values.
         currentTime = defaultTurnTime;
 
+        tweenClockSequence = DOTween.Sequence();
 
         attackTurn = true;
         cardPhase = true;
@@ -111,6 +114,9 @@ public class TurnManager : MonoBehaviour
 
     void EndTurn()
     {
+        tweenClockSequence.Kill();
+        timerArrow.transform.rotation = new Quaternion(0, 0, 0, 0);
+        
         Debug.Log("end card select");
 
         cardPhase = false;
@@ -135,10 +141,8 @@ public class TurnManager : MonoBehaviour
     {
         currentTime = defaultTurnTime;
 
-        Sequence tweenSequence = DOTween.Sequence();
-        tweenSequence.Append( timerArrow.DOLocalRotate(new Vector3(0, 0, (timerArrow.rotation.z - 360)), defaultTurnTime, RotateMode.FastBeyond360).SetEase(Ease.Linear));
-        
-        tweenSequence.Append(clock.DOLocalRotate(new Vector3(0, 0, (timerArrow.rotation.z - 10)), 0.04f, RotateMode.Fast).SetLoops(20, LoopType.Yoyo).SetSpeedBased(true));
+        tweenClockSequence.Append(timerArrow.DOLocalRotate(new Vector3(0, 0, (timerArrow.rotation.z - 360)), defaultTurnTime, RotateMode.FastBeyond360).SetEase(Ease.Linear));
+        tweenClockSequence.Append(clock.DOLocalRotate(new Vector3(0, 0, (timerArrow.rotation.z - 10)), 0.04f, RotateMode.Fast).SetLoops(20, LoopType.Yoyo).SetSpeedBased(true));
         
         while (true)
         {

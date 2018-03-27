@@ -10,6 +10,8 @@ public class Player : MonoBehaviour, IHealth<float>
 {
     [SerializeField] private float playerHealth;
     [SerializeField] private Slider playerHealthBar;
+    [SerializeField] private GameObject sequence;
+    [SerializeField] private GameObject PlayAgain;
 
     // Spriterenderer 
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -22,7 +24,7 @@ public class Player : MonoBehaviour, IHealth<float>
 
 	void Start ()
     {
-        Health(100);
+        Health(10);
 	}
 
     void Update()
@@ -54,8 +56,11 @@ public class Player : MonoBehaviour, IHealth<float>
     {
         if (playerHealth <= 0)
         {
-            defeatScreen.DOMoveY(89, 1.5f);
-            PauseGame.pause = true;
+            Sequence defeatTween = DOTween.Sequence();
+            defeatTween.SetDelay(3f);
+            defeatTween.Append(defeatScreen.DOMoveY(440, 1.5f));
+            sequence.SetActive(false);
+            PlayAgain.SetActive(true);
         }
         //if player health <=0 change scene
     }
