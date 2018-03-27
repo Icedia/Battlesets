@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 
 public class Enemy : MonoBehaviour, IHealth<float>
@@ -17,6 +18,8 @@ public class Enemy : MonoBehaviour, IHealth<float>
     [SerializeField] private Sprite enemyIdle;
     [SerializeField] private Sprite enemyHurt;
     [SerializeField] private Sprite enemyAttack;
+    [SerializeField] private Transform victoryScreen;
+
 
     void Start ()
     {
@@ -52,7 +55,9 @@ public class Enemy : MonoBehaviour, IHealth<float>
     {
         if(enemyHealth <= 0)
         {
-            SceneManager.LoadScene("Victory");
+            //stop game and show screen
+            victoryScreen.DOMoveY(89, 1f);
+            PauseGame.pause = true;
         }
     }
 

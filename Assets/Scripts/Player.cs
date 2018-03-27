@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 
 public class Player : MonoBehaviour, IHealth<float>
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour, IHealth<float>
     [SerializeField] private Sprite playerIdle;
     [SerializeField] private Sprite playerHurt;
     [SerializeField] private Sprite playerAttack;
+    [SerializeField] private Transform defeatScreen;
 
 	void Start ()
     {
@@ -52,7 +54,8 @@ public class Player : MonoBehaviour, IHealth<float>
     {
         if (playerHealth <= 0)
         {
-            SceneManager.LoadScene("Defeat");
+            defeatScreen.DOMoveY(89, 1.5f);
+            PauseGame.pause = true;
         }
         //if player health <=0 change scene
     }
