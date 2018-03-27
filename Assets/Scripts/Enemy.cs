@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Enemy : MonoBehaviour, IHealth<float>
 {
@@ -21,6 +23,11 @@ public class Enemy : MonoBehaviour, IHealth<float>
         Health(100); // set health for the player
 	}
 
+    void Update()
+    {
+        Victory();
+    }
+
     public void IdleAnim()
     {
         spriteRenderer.sprite = enemyIdle;
@@ -39,6 +46,14 @@ public class Enemy : MonoBehaviour, IHealth<float>
     public void Health(float health)
     {
         enemyHealth = health;
+    }
+
+    private void Victory()
+    {
+        if(enemyHealth <= 0)
+        {
+            SceneManager.LoadScene("Victory");
+        }
     }
 
     public void DoDamage(int damage)
