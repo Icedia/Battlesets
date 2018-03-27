@@ -97,7 +97,7 @@ public class DropField : MonoBehaviour
         Color color;
         CardSounds.Play();
         float alpha = cardDropfield.color.a;
-        float fadeSpeed = 0.03f;
+        float fadeSpeed = 0.05f;
 
         while (true)
         {
