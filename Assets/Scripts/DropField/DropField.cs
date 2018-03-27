@@ -10,6 +10,9 @@ public class DropField : MonoBehaviour
     // IEnumerators.
     private IEnumerator animateDropField;
     private IEnumerator fadeOutDropField;
+
+    //Audio
+    [SerializeField] private AudioSource CardSounds;
     
     // Use this for initialization
     void Start()
@@ -92,6 +95,7 @@ public class DropField : MonoBehaviour
     IEnumerator FadeOutDropField()
     {
         Color color;
+        CardSounds.Play();
         float alpha = cardDropfield.color.a;
         float fadeSpeed = 0.03f;
 

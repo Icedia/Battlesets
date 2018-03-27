@@ -43,6 +43,9 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private Enemy enemy;
 
+    //Audio
+    [SerializeField] private AudioSource EnemySound;
+    [SerializeField] private AudioSource PlayerSound;
     public int turnDamage = 0;
 
 	void Start ()
@@ -189,11 +192,15 @@ public class TurnManager : MonoBehaviour
         {
             player.AttackAnim();
             enemy.HurtAnim();
+            PlayerSound.Play();
+            //play magic sound
         }
         else
         {
             enemy.AttackAnim();
             player.HurtAnim();
+            EnemySound.Play();
+            //player hit sound
         }
 
         DisplayAttackScreen();
