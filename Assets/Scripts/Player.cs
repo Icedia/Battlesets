@@ -33,27 +33,42 @@ public class Player : MonoBehaviour, IHealth<float>
     {
         Defeat();
     }
-    //assignes idle animation
+  
+    /// <summary>
+    /// assignes idle animation
+    /// </summary>
     public void IdleAnim()
     {
         spriteRenderer.sprite = playerIdle;
     }
-    //assignes hurt animation
+    
+    /// <summary>
+    /// assignes hurt animation
+    /// </summary>
     public void HurtAnim()
     {
         spriteRenderer.sprite = playerHurt;
     }
-    //assignes attack animation
+
+    /// <summary>
+    /// assignes attack animation
+    /// </summary>
     public void AttackAnim()
     {
         spriteRenderer.sprite = playerAttack;
     }
-    //assignes health
+    
+    /// <summary>
+    /// assignes health
+    /// </summary>
+    /// <param name="health"></param>
     public void Health(float health)
     {
         playerHealth = health;
     }
-    //checks if the game ends in a defeat
+    /// <summary>
+    /// checks if the game ends in a defeat
+    /// </summary>
     private void Defeat()
     {
         if (playerHealth <= 0)
@@ -65,7 +80,10 @@ public class Player : MonoBehaviour, IHealth<float>
             PlayAgain.SetActive(true);
         }
     }
-    //checks how much damage will be done
+    /// <summary>
+    /// checks how much damage will be done
+    /// </summary>
+    /// <param name="damage"></param>
     public void DoDamage(int damage)
     {
         playerHealth -= damage;

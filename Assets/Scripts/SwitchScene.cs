@@ -7,7 +7,9 @@ public class SwitchScene : MonoBehaviour
     //stores destination and audio file
     [SerializeField] private string Destination;
     [SerializeField] private AudioSource audioSource;
-    //loads scene and plays audio file
+    /// <summary>
+    /// loads scene and plays audio file
+    /// </summary>
     public void LoadScene()
     {
         audioSource.Play();
