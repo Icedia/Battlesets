@@ -22,6 +22,10 @@ public class Set : MonoBehaviour
         get { return symbolClr; }
     }
 
+    /// <summary>
+    /// Displays when the made set correct or incorrect is.
+    /// </summary>
+    /// <param name="isCorrect">Which sprite to display</param>
     public void SetResult(bool isCorrect)
     {
         resultSpriteRnd.gameObject.SetActive(true);

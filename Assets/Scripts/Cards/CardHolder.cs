@@ -147,8 +147,7 @@ public class CardHolder : MonoBehaviour
 
             setSequence.CurrentSequence[setSequence.CurrentSequenceNum].SetResult(false);
         }
-
-        //setSequence.CurrentSequence[setSequence.CurrentSequenceNum].gameObject.SetActive(false);
+        
         setSequence.CurrentSequenceNum++;
     }
 

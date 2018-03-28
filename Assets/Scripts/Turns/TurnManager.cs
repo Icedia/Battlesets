@@ -112,6 +112,9 @@ public class TurnManager : MonoBehaviour
         enemy.IdleAnim();
     }
 
+    /// <summary>
+    /// Stop the cardphase and begin the attack animation.
+    /// </summary>
     void EndTurn()
     {
         tweenClockSequence.Kill();
@@ -126,6 +129,9 @@ public class TurnManager : MonoBehaviour
         StartCoroutine(animationTime);
     }
 
+    /// <summary>
+    /// Generates a new sequence, displays the cards en starts the countdown.
+    /// </summary>
     void StartCardPhase()
     {
         Debug.Log("Start CardPhase");
@@ -136,13 +142,14 @@ public class TurnManager : MonoBehaviour
         countDown = CountDown();
         StartCoroutine(countDown);
     }
-    //Checks time for clock
+
+    // Checks time for clock.
     IEnumerator CountDown()
     {
         currentTime = defaultTurnTime;
 
         tweenClockSequence.Append(timerArrow.DOLocalRotate(new Vector3(0, 0, (timerArrow.rotation.z - 360)), defaultTurnTime, RotateMode.FastBeyond360).SetEase(Ease.Linear));
-        tweenClockSequence.Append(clock.DOLocalRotate(new Vector3(0, 0, (timerArrow.rotation.z - 10)), 0.04f, RotateMode.Fast).SetLoops(20, LoopType.Yoyo).SetSpeedBased(true));
+        //tweenClockSequence.Append(clock.DOLocalRotate(new Vector3(0, 0, (timerArrow.rotation.z - 10)), 0.04f, RotateMode.Fast).SetLoops(20, LoopType.Yoyo).SetSpeedBased(true));
         
         while (true)
         {
@@ -163,14 +170,6 @@ public class TurnManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Update the text of our countdown timer.
-    /// </summary>
-  /*  void UpdateCountDownText()
-    {
-        countDownText.text = "Time left:" + " " + currentTime;
-    }*/
-
-    /// <summary>
     /// Checks if the player has finished the sequence before the times.
     /// </summary>
     void CheckSequenceComplete()
@@ -183,6 +182,7 @@ public class TurnManager : MonoBehaviour
             EndTurn();
         }
     }
+
     //regulates the time the animation has
     IEnumerator AnimationTime()
     {
@@ -194,6 +194,7 @@ public class TurnManager : MonoBehaviour
         CheckTurn();
     }
 
+    // Animates the attack animation of the player and enemy.
     void DisplayAttackScreen()
     {
         attackIndicator.gameObject.SetActive(true);
@@ -223,6 +224,9 @@ public class TurnManager : MonoBehaviour
         damageSequence.AppendCallback(SetTurnDamage);
     }
 
+    /// <summary>
+    /// Sets the amount of damage done or blocked.
+    /// </summary>
     void SetTurnDamage()
     {
         if (attackTurn)

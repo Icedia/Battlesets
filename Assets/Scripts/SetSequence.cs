@@ -67,7 +67,7 @@ public class SetSequence : MonoBehaviour
         int j = 0;
         for (int i = currentSequence.Count; i --> 0; j++)
         {
-            currentSequence[i].transform.position = new Vector2((550 - (j * 150)), 280);
+            currentSequence[i].transform.position = new Vector2((475 - (j * 135)), 280);
             currentSequence[i].transform.localScale = new Vector2(0.8f, 0.8f);
         }
     }
