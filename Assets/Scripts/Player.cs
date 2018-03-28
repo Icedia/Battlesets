@@ -8,8 +8,10 @@ using DG.Tweening;
 
 public class Player : MonoBehaviour, IHealth<float>
 {
+    // Holds value to end the game
     [SerializeField] private float playerHealth;
     [SerializeField] private Slider playerHealthBar;
+    //use too end the game
     [SerializeField] private GameObject sequence;
     [SerializeField] private GameObject PlayAgain;
 
@@ -21,37 +23,37 @@ public class Player : MonoBehaviour, IHealth<float>
     [SerializeField] private Sprite playerHurt;
     [SerializeField] private Sprite playerAttack;
     [SerializeField] private Transform defeatScreen;
-
+    //Sets health of player
 	void Start ()
     {
-        Health(10);
+        Health(100);
 	}
-
+    //Checks if the game ends
     void Update()
     {
         Defeat();
     }
-
+    //assignes idle animation
     public void IdleAnim()
     {
         spriteRenderer.sprite = playerIdle;
     }
-
+    //assignes hurt animation
     public void HurtAnim()
     {
         spriteRenderer.sprite = playerHurt;
     }
-
+    //assignes attack animation
     public void AttackAnim()
     {
         spriteRenderer.sprite = playerAttack;
     }
-
+    //assignes health
     public void Health(float health)
     {
         playerHealth = health;
     }
-
+    //checks if the game ends in a defeat
     private void Defeat()
     {
         if (playerHealth <= 0)
@@ -62,9 +64,8 @@ public class Player : MonoBehaviour, IHealth<float>
             sequence.SetActive(false);
             PlayAgain.SetActive(true);
         }
-        //if player health <=0 change scene
     }
-
+    //checks how much damage will be done
     public void DoDamage(int damage)
     {
         playerHealth -= damage;

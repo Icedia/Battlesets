@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class SwitchScene : MonoBehaviour
 {
-
+    //stores destination and audio file
     [SerializeField] private string Destination;
-    [SerializeField] private AudioSource audioSour;
-
+    [SerializeField] private AudioSource audioSource;
+    //loads scene and plays audio file
     public void LoadScene()
     {
-        audioSour.Play();
+        audioSource.Play();
         SceneManager.LoadScene(Destination);
     }
 

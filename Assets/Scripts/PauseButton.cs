@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PauseButton : MonoBehaviour {
 
-    //Regulates Pause state
+    //Regulates pause state
     public void SwitchPause()
     {
         if (PauseGame.pause == false)
