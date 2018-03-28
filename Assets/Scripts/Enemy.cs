@@ -23,44 +23,56 @@ public class Enemy : MonoBehaviour, IHealth<float>
     [SerializeField] private Sprite enemyHurt;
     [SerializeField] private Sprite enemyAttack;
     [SerializeField] private Transform victoryScreen;
-
-    //sets enemy health too 100
+    /// <summary>
+    /// sets enemy health too 100
+    /// </summary>
     void Start ()
     {
         Health(400); 
 	}
-
-    //checkes if the game is won
+    /// <summary>
+    /// checkes if the game is won
+    /// </summary>
     void Update()
     {
         Victory();
     }
-
-    //assignes the idle animation
+    /// <summary>
+    /// assignes the idle animation
+    /// </summary>
     public void IdleAnim()
     {
         spriteRenderer.sprite = enemyIdle;
     }
-
-    //assignes the hurt animation
+    /// <summary>
+    /// assignes the hurt animation
+    /// </summary>
+    
     public void HurtAnim()
     {
         spriteRenderer.sprite = enemyHurt;
     }
 
-    //assignes the attack sprite
+    /// <summary>
+    /// assignes the attack sprite
+    /// </summary>
     public void AttackAnim()
     {
         spriteRenderer.sprite = enemyAttack;
     }
-
-    //assignes the enemy health
+    /// <summary>
+    /// assignes the enemy health
+    /// </summary>
+    /// <param name="health"></param>
     public void Health(float health)
     {
         enemyHealth = health;
     }
 
-    //checks if the game is won
+    /// <summary>
+    ///   checks if the game is won
+    /// </summary>
+  
     private void Victory()
     {
         if(enemyHealth <= 0)
@@ -74,8 +86,11 @@ public class Enemy : MonoBehaviour, IHealth<float>
 
         }
     }
-
-    //calculates how much damage will be done
+    /// <summary>
+    /// calculates how much damage will be done
+    /// </summary>
+    /// <param name="damage"></param>
+  
     public void DoDamage(int damage)
     {
         enemyHealth -= damage;

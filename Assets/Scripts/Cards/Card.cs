@@ -29,24 +29,27 @@ public class Card : MonoBehaviour
 
     [SerializeField] public Symbol symbolSprite;
     [SerializeField] public SymbolColor symbolColor;
-
-    // Renderer of our Card Background.
+    /// <summary>
+    /// Renderer of our Card Background.
+    /// </summary>
     [SerializeField] private SpriteRenderer backgroundRenderer;
     public SpriteRenderer BackgroundRenderer
     {
         get { return backgroundRenderer; }
         set { backgroundRenderer = value; }
     }
-
-    // Renderer of our Card Symbol.
+    /// <summary>
+    /// Renderer of our Card Symbol.
+    /// </summary>
     [SerializeField] private SpriteRenderer symbolRenderer;
     public SpriteRenderer SymbolRenderer
     {
         get { return symbolRenderer; }
         set { symbolRenderer = value; }
     }
-    
-    // Highlighting the card when moving over it.
+    /// <summary>
+    /// Highlighting the card when moving over it.
+    /// </summary>
     void OnMouseEnter()
     {
         if (PauseGame.pause == false)
@@ -60,8 +63,9 @@ public class Card : MonoBehaviour
             }
         }
     }
-
-    // Remove the highlight from the card.
+    /// <summary>
+    ///  Remove the highlight from the card.
+    /// </summary>
     void OnMouseExit()
     {
  
@@ -75,8 +79,9 @@ public class Card : MonoBehaviour
             symbolRenderer.sortingLayerName = "Card";
         }
     }
-
-    // Moving the card.
+    /// <summary>
+    /// Moving the card.
+    /// </summary>
     void OnMouseDrag()
     {
         if (PauseGame.pause == false)
@@ -87,8 +92,9 @@ public class Card : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, mousePos, 0.2f);
         }
     }
-
-    // Highlighting the card clicking it.
+    /// <summary>
+    /// Highlighting the card clicking it.
+    /// </summary>
     void OnMouseDown()
     {
         if (PauseGame.pause == false)
@@ -105,8 +111,9 @@ public class Card : MonoBehaviour
         }
      
     }
-
-    // Stop dragging, check if we can play the card and reallign our cards.
+    /// <summary>
+    /// Stop dragging, check if we can play the card and reallign our cards.
+    /// </summary>
     void OnMouseUp()
     {
         if (PauseGame.pause == false)

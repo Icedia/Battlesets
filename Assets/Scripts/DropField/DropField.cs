@@ -22,8 +22,10 @@ public class DropField : MonoBehaviour
         Card.CardCheck += CheckInField;
         TurnManager.TimeUp += HideDropField;
     }
-
-    // Checks if we are within the dropfield area.
+    /// <summary>
+    /// Checks if we are within the dropfield area.
+    /// </summary>
+    /// <returns></returns>
     private bool CheckInField()
     {
         BoxCollider2D col = transform.GetComponent<BoxCollider2D>();
@@ -38,15 +40,17 @@ public class DropField : MonoBehaviour
             return false;
         }
     }
-
-    // Call the IEnumerator to display the drop field.
+    /// <summary>
+    /// Call the IEnumerator to display the drop field.
+    /// </summary>
     void ShowDropField()
     {
         animateDropField = AnimateDropField();
         StartCoroutine(animateDropField);
     }
-    
-    // Call the IEnumerator to hide the drop field.
+    /// <summary>
+    /// Call the IEnumerator to hide the drop field.
+    /// </summary>
     void HideDropField()
     {
         if (animateDropField != null)
@@ -57,8 +61,10 @@ public class DropField : MonoBehaviour
         fadeOutDropField = FadeOutDropField();
         StartCoroutine(fadeOutDropField);
     }
-
-    // Pulse the alpha of the drop field.
+    /// <summary>
+    /// Pulse the alpha of the drop field.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator AnimateDropField()
     {
         Color color;
@@ -90,8 +96,10 @@ public class DropField : MonoBehaviour
             yield return new WaitForSeconds(0.0175f);
         }
     }
-
-    // Fade the drop field out.
+    /// <summary>
+    /// Fade the drop field out.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator FadeOutDropField()
     {
         Color color;

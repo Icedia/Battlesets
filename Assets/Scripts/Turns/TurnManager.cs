@@ -182,8 +182,10 @@ public class TurnManager : MonoBehaviour
             EndTurn();
         }
     }
-
-    //regulates the time the animation has
+    /// <summary>
+    /// Regulates the time for the animation
+    /// </summary>
+    /// <returns></returns>
     IEnumerator AnimationTime()
     {
         print("Animating");
@@ -193,8 +195,9 @@ public class TurnManager : MonoBehaviour
         Debug.Log("end animation");
         CheckTurn();
     }
-
-    // Animates the attack animation of the player and enemy.
+    /// <summary>
+    /// Animates the attack animation of the player and enemy.
+    /// </summary>
     void DisplayAttackScreen()
     {
         attackIndicator.gameObject.SetActive(true);
