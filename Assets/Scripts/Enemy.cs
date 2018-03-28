@@ -15,8 +15,6 @@ public class Enemy : MonoBehaviour, IHealth<float>
     [SerializeField] private GameObject sequence;
     [SerializeField] private GameObject PlayAgain;
 
-
-
     // Spriterenderer 
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -29,33 +27,39 @@ public class Enemy : MonoBehaviour, IHealth<float>
     //sets enemy health too 100
     void Start ()
     {
-        Health(100); 
+        Health(400); 
 	}
+
     //checkes if the game is won
     void Update()
     {
         Victory();
     }
+
     //assignes the idle animation
     public void IdleAnim()
     {
         spriteRenderer.sprite = enemyIdle;
     }
+
     //assignes the hurt animation
     public void HurtAnim()
     {
         spriteRenderer.sprite = enemyHurt;
     }
+
     //assignes the attack sprite
     public void AttackAnim()
     {
         spriteRenderer.sprite = enemyAttack;
     }
+
     //assignes the enemy health
     public void Health(float health)
     {
         enemyHealth = health;
     }
+
     //checks if the game is won
     private void Victory()
     {
@@ -70,6 +74,7 @@ public class Enemy : MonoBehaviour, IHealth<float>
 
         }
     }
+
     //calculates how much damage will be done
     public void DoDamage(int damage)
     {
