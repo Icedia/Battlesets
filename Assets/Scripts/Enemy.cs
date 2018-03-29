@@ -5,15 +5,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
-
 public class Enemy : MonoBehaviour, IHealth<float>
 {
     //Holds value's of enemies health
     [SerializeField] private float enemyHealth;
     [SerializeField] private Slider enemyHealthBar;
-    //value used to end the game
+
+    //Value used to end the game
     [SerializeField] private GameObject sequence;
-    [SerializeField] private GameObject PlayAgain;
+    [SerializeField] private GameObject menuButton;
+    [SerializeField] private GameObject pauseButton;
 
     // Spriterenderer 
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -23,13 +24,15 @@ public class Enemy : MonoBehaviour, IHealth<float>
     [SerializeField] private Sprite enemyHurt;
     [SerializeField] private Sprite enemyAttack;
     [SerializeField] private Transform victoryScreen;
+
     /// <summary>
-    /// sets enemy health too 100
+    /// Sets enemy health to 100.
     /// </summary>
     void Start ()
     {
         Health(400); 
 	}
+
     /// <summary>
     /// checkes if the game is won
     /// </summary>
@@ -37,6 +40,7 @@ public class Enemy : MonoBehaviour, IHealth<float>
     {
         Victory();
     }
+
     /// <summary>
     /// assignes the idle animation
     /// </summary>
@@ -44,10 +48,10 @@ public class Enemy : MonoBehaviour, IHealth<float>
     {
         spriteRenderer.sprite = enemyIdle;
     }
+
     /// <summary>
     /// assignes the hurt animation
     /// </summary>
-    
     public void HurtAnim()
     {
         spriteRenderer.sprite = enemyHurt;
@@ -60,6 +64,7 @@ public class Enemy : MonoBehaviour, IHealth<float>
     {
         spriteRenderer.sprite = enemyAttack;
     }
+
     /// <summary>
     /// assignes the enemy health
     /// </summary>
@@ -72,25 +77,24 @@ public class Enemy : MonoBehaviour, IHealth<float>
     /// <summary>
     ///   checks if the game is won
     /// </summary>
-  
     private void Victory()
     {
-        if(enemyHealth <= 0)
+        if (enemyHealth <= 0)
         {
             //stop game and show screen
             Sequence victoryTween = DOTween.Sequence();
             victoryTween.SetDelay(3f);
-            victoryTween.Append(victoryScreen.DOMoveY(440, 1f));
+            
+            victoryTween.Append(victoryScreen.DOMoveY(Screen.height * 0.55f, 1f).OnComplete(() => menuButton.SetActive(true)));
             sequence.SetActive(false);
-            PlayAgain.SetActive(true);
-
+            pauseButton.SetActive(false);
         }
     }
+
     /// <summary>
     /// calculates how much damage will be done
     /// </summary>
     /// <param name="damage"></param>
-  
     public void DoDamage(int damage)
     {
         enemyHealth -= damage;

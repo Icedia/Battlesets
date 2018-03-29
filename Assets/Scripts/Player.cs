@@ -5,15 +5,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
-
 public class Player : MonoBehaviour, IHealth<float>
 {
     // Holds value to end the game
     [SerializeField] private float playerHealth;
     [SerializeField] private Slider playerHealthBar;
+
     //use too end the game
     [SerializeField] private GameObject sequence;
-    [SerializeField] private GameObject PlayAgain;
+    [SerializeField] private GameObject menuButton;
+    [SerializeField] private GameObject pauseButton;
 
     // Spriterenderer 
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -23,11 +24,13 @@ public class Player : MonoBehaviour, IHealth<float>
     [SerializeField] private Sprite playerHurt;
     [SerializeField] private Sprite playerAttack;
     [SerializeField] private Transform defeatScreen;
+
     //Sets health of player
 	void Start ()
     {
         Health(100);
 	}
+
     //Checks if the game ends
     void Update()
     {
@@ -66,6 +69,7 @@ public class Player : MonoBehaviour, IHealth<float>
     {
         playerHealth = health;
     }
+
     /// <summary>
     /// checks if the game ends in a defeat
     /// </summary>
@@ -75,11 +79,13 @@ public class Player : MonoBehaviour, IHealth<float>
         {
             Sequence defeatTween = DOTween.Sequence();
             defeatTween.SetDelay(3f);
-            defeatTween.Append(defeatScreen.DOMoveY(440, 1.5f));
+
+            defeatTween.Append(defeatScreen.DOMoveY(Screen.height * 0.55f, 1.5f).OnComplete(() => menuButton.SetActive(true)));
             sequence.SetActive(false);
-            PlayAgain.SetActive(true);
+            pauseButton.SetActive(false);
         }
     }
+
     /// <summary>
     /// checks how much damage will be done
     /// </summary>
